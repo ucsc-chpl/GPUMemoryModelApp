@@ -1,0 +1,38 @@
+{
+  "buildFiles": [
+    "/Users/atom/gpuiosbundle/android/app/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/atom/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/atom/gpuiosbundle/android/app/.cxx/Debug/2b3o24a3/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/atom/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/atom/gpuiosbundle/android/app/.cxx/Debug/2b3o24a3/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "gpuiosbundle::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "gpuiosbundle",
+      "output": "/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/2b3o24a3/obj/x86/libgpuiosbundle.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

@@ -1,0 +1,14 @@
+# ninja log v5
+3	137	1681552857	CMakeFiles/native_litmus.dir/dart_api_dl.c.o	2aebebd6acbb5ad6
+0	5255	1681552862	CMakeFiles/native_litmus.dir/litmus.cpp.o	f16fcab3f5de442f
+2	5273	1681552862	CMakeFiles/native_litmus.dir/easyvk.cpp.o	6e73dc686564253e
+5273	5856	1681552862	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/armeabi-v7a/libnative_litmus.so	6ba04ba2ff2aa334
+2	804	1681595956	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/armeabi-v7a/libnative_litmus.so	6ba04ba2ff2aa334
+2	2357	1681647621	CMakeFiles/native_litmus.dir/litmus.cpp.o	f16fcab3f5de442f
+2358	2573	1681647621	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/armeabi-v7a/libnative_litmus.so	6ba04ba2ff2aa334
+1	2743	1681652013	CMakeFiles/native_litmus.dir/litmus.cpp.o	f16fcab3f5de442f
+2743	2939	1681652013	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/armeabi-v7a/libnative_litmus.so	6ba04ba2ff2aa334
+2	5406	1681692592	CMakeFiles/native_litmus.dir/litmus.cpp.o	f16fcab3f5de442f
+5406	5660	1681692593	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/armeabi-v7a/libnative_litmus.so	6ba04ba2ff2aa334
+1	369	1681923782	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/armeabi-v7a/libnative_litmus.so	6ba04ba2ff2aa334
+1	352	1681928761	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/armeabi-v7a/libnative_litmus.so	6ba04ba2ff2aa334

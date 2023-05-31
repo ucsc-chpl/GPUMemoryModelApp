@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "UC Santa Cruz Banana Slugs Reveal New Brand Identity@1x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "UC Santa Cruz Banana Slugs Reveal New Brand Identity@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "UC Santa Cruz Banana Slugs Reveal New Brand Identity@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

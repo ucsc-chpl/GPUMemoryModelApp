@@ -1,0 +1,17 @@
+# ninja log v5
+0	11501	1681552590	CMakeFiles/native_litmus.dir/litmus.cpp.o	fdf21aff4e3987ff
+1	11784	1681552591	CMakeFiles/native_litmus.dir/easyvk.cpp.o	73da387b94cd4c1d
+3	1194	1681552854	CMakeFiles/native_litmus.dir/dart_api_dl.c.o	a40890bd39d0ad14
+1194	2359	1681552855	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
+1	2436	1681595955	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
+3	3039	1681647618	CMakeFiles/native_litmus.dir/litmus.cpp.o	fdf21aff4e3987ff
+3039	3528	1681647619	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
+1	4220	1681651608	CMakeFiles/native_litmus.dir/litmus.cpp.o	fdf21aff4e3987ff
+3	6095	1681651739	CMakeFiles/native_litmus.dir/litmus.cpp.o	fdf21aff4e3987ff
+2	802	1681652010	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
+2	4428	1681692261	CMakeFiles/native_litmus.dir/litmus.cpp.o	fdf21aff4e3987ff
+4429	4949	1681692261	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
+3	8947	1681692585	CMakeFiles/native_litmus.dir/litmus.cpp.o	fdf21aff4e3987ff
+8948	9546	1681692585	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
+1	1407	1681923782	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
+2	1315	1681928761	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169

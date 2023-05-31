@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-merged_res-25:/drawable-v21_launch_background.xml.flat",
+        "source": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-main-19:/drawable-v21/launch_background.xml"
+    },
+    {
+        "merged": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-merged_res-25:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-main-19:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-merged_res-25:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-main-19:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-merged_res-25:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-main-19:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-merged_res-25:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-main-19:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-merged_res-25:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-main-19:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-merged_res-25:/drawable_image.png.flat",
+        "source": "/Users/atom/.gradle/daemon/7.5/com.example.gpuiosbundle.app-main-19:/drawable/image.png"
+    },
+    {
+        "merged": "com.example.gpuiosbundle.app-merged_res-25:/drawable-v21_launch_background.xml.flat",
+        "source": "com.example.gpuiosbundle.app-main-19:/drawable-v21/launch_background.xml"
+    }
+]
