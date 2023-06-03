@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a",
+  "command": "/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi26 --gcc-toolchain=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dnative_lock_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC -o CMakeFiles/native_lock.dir/lock.cpp.o -c /Users/atom/gpuiosbundle/android/app/src/main/cpp/lock.cpp",
+  "file": "/Users/atom/gpuiosbundle/android/app/src/main/cpp/lock.cpp"
+},
+{
+  "directory": "/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a",
+  "command": "/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi26 --gcc-toolchain=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dnative_lock_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC -o CMakeFiles/native_lock.dir/easyvk.cpp.o -c /Users/atom/gpuiosbundle/android/app/src/main/cpp/easyvk.cpp",
+  "file": "/Users/atom/gpuiosbundle/android/app/src/main/cpp/easyvk.cpp"
+},
+{
+  "directory": "/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a",
+  "command": "/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=armv7-none-linux-androideabi26 --gcc-toolchain=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dnative_lock_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -O2 -g -DNDEBUG -fPIC -o CMakeFiles/native_lock.dir/dart_api_dl.c.o -c /Users/atom/gpuiosbundle/android/app/src/main/cpp/dart_api_dl.c",
+  "file": "/Users/atom/gpuiosbundle/android/app/src/main/cpp/dart_api_dl.c"
+},
+{
+  "directory": "/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a",
+  "command": "/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi26 --gcc-toolchain=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dnative_litmus_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC -o CMakeFiles/native_litmus.dir/litmus.cpp.o -c /Users/atom/gpuiosbundle/android/app/src/main/cpp/litmus.cpp",
+  "file": "/Users/atom/gpuiosbundle/android/app/src/main/cpp/litmus.cpp"
+},
+{
+  "directory": "/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a",
+  "command": "/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi26 --gcc-toolchain=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dnative_litmus_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC -o CMakeFiles/native_litmus.dir/easyvk.cpp.o -c /Users/atom/gpuiosbundle/android/app/src/main/cpp/easyvk.cpp",
+  "file": "/Users/atom/gpuiosbundle/android/app/src/main/cpp/easyvk.cpp"
+},
+{
+  "directory": "/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a",
+  "command": "/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=armv7-none-linux-androideabi26 --gcc-toolchain=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/atom/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dnative_litmus_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -O2 -g -DNDEBUG -fPIC -o CMakeFiles/native_litmus.dir/dart_api_dl.c.o -c /Users/atom/gpuiosbundle/android/app/src/main/cpp/dart_api_dl.c",
+  "file": "/Users/atom/gpuiosbundle/android/app/src/main/cpp/dart_api_dl.c"
+}
+]

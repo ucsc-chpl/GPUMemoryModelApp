@@ -17,6 +17,12 @@
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
+    "native_lock::@6890427a1f51a3e7e1df": {
+      "artifactName": "native_lock",
+      "abi": "arm64-v8a",
+      "output": "/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_lock.so",
+      "runtimeFiles": []
+    },
     "native_litmus::@6890427a1f51a3e7e1df": {
       "artifactName": "native_litmus",
       "abi": "arm64-v8a",

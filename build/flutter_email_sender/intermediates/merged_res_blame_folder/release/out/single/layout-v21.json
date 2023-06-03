@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/layout-v21/notification_template_custom_big.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-core-1.8.0-4:/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/layout-v21/notification_template_icon_group.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-core-1.8.0-4:/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/layout-v21/notification_action_tombstone.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-core-1.8.0-4:/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/layout-v21/notification_action.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-core-1.8.0-4:/layout-v21/notification_action.xml"
+    }
+]

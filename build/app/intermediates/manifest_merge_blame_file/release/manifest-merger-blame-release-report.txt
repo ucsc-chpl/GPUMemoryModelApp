@@ -1,0 +1,143 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.gpuiosbundle"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+8-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml
+10
+11    <queries>
+11-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:4:5-9:13
+12        <intent>
+12-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:5:5-8:14
+13            <action android:name="android.intent.action.SENDTO" />
+13-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:6:7-61
+13-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:6:15-58
+14
+15            <data android:scheme="mailto" />
+15-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:7:7-39
+15-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:7:13-36
+16        </intent>
+17    </queries>
+18
+19    <application
+20        android:name="android.app.Application"
+20-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:13:9-42
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.8.0] /Users/atom/.gradle/caches/transforms-3/2fa18b2f544a798470f6ba6d29f55f60/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
+22        android:extractNativeLibs="false"
+23        android:icon="@mipmap/ic_launcher"
+23-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:14:9-43
+24        android:label="gpuiosbundle" >
+24-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:12:9-37
+25        <activity
+25-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:15:9-35:20
+26            android:name="com.example.gpuiosbundle.MainActivity"
+26-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:16:13-41
+27            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+27-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:20:13-163
+28            android:exported="true"
+28-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:17:13-36
+29            android:hardwareAccelerated="true"
+29-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:21:13-47
+30            android:launchMode="singleTop"
+30-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:18:13-43
+31            android:theme="@style/LaunchTheme"
+31-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:19:13-47
+32            android:windowSoftInputMode="adjustResize" >
+32-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:22:13-55
+33
+34            <!--
+35                 Specifies an Android theme to apply to this Activity as soon as
+36                 the Android process has started. This theme is visible to the user
+37                 while the Flutter UI initializes. After that, this theme continues
+38                 to determine the Window background behind the Flutter UI.
+39            -->
+40            <meta-data
+40-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:27:13-30:17
+41                android:name="io.flutter.embedding.android.NormalTheme"
+41-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:28:15-70
+42                android:resource="@style/NormalTheme" />
+42-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:29:15-52
+43
+44            <intent-filter>
+44-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:31:13-34:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:32:17-68
+45-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:32:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:33:17-76
+47-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:33:27-74
+48            </intent-filter>
+49        </activity>
+50        <!--
+51             Don't delete the meta-data below.
+52             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+53        -->
+54        <meta-data
+54-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:38:9-40:33
+55            android:name="flutterEmbedding"
+55-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:39:13-44
+56            android:value="2" />
+56-->/Users/atom/gpuiosbundle/android/app/src/main/AndroidManifest.xml:40:13-30
+57
+58        <provider
+58-->[:flutter_email_sender] /Users/atom/gpuiosbundle/build/flutter_email_sender/intermediates/merged_manifest/release/AndroidManifest.xml:10:9-18:20
+59            android:name="com.sidlatau.flutteremailsender.FlutterEmailSenderFileProvider"
+59-->[:flutter_email_sender] /Users/atom/gpuiosbundle/build/flutter_email_sender/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-90
+60            android:authorities="com.example.gpuiosbundle.file_provider"
+60-->[:flutter_email_sender] /Users/atom/gpuiosbundle/build/flutter_email_sender/intermediates/merged_manifest/release/AndroidManifest.xml:12:13-65
+61            android:exported="false"
+61-->[:flutter_email_sender] /Users/atom/gpuiosbundle/build/flutter_email_sender/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-37
+62            android:grantUriPermissions="true" >
+62-->[:flutter_email_sender] /Users/atom/gpuiosbundle/build/flutter_email_sender/intermediates/merged_manifest/release/AndroidManifest.xml:14:13-47
+63            <meta-data
+63-->[:flutter_email_sender] /Users/atom/gpuiosbundle/build/flutter_email_sender/intermediates/merged_manifest/release/AndroidManifest.xml:15:13-17:61
+64                android:name="android.support.FILE_PROVIDER_PATHS"
+64-->[:flutter_email_sender] /Users/atom/gpuiosbundle/build/flutter_email_sender/intermediates/merged_manifest/release/AndroidManifest.xml:16:17-67
+65                android:resource="@xml/shared_file_paths" />
+65-->[:flutter_email_sender] /Users/atom/gpuiosbundle/build/flutter_email_sender/intermediates/merged_manifest/release/AndroidManifest.xml:17:17-58
+66        </provider>
+67
+68        <uses-library
+68-->[androidx.window:window:1.0.0-beta04] /Users/atom/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+69            android:name="androidx.window.extensions"
+69-->[androidx.window:window:1.0.0-beta04] /Users/atom/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+70            android:required="false" />
+70-->[androidx.window:window:1.0.0-beta04] /Users/atom/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+71        <uses-library
+71-->[androidx.window:window:1.0.0-beta04] /Users/atom/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+72            android:name="androidx.window.sidecar"
+72-->[androidx.window:window:1.0.0-beta04] /Users/atom/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+73            android:required="false" />
+73-->[androidx.window:window:1.0.0-beta04] /Users/atom/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+74
+75        <provider
+75-->[androidx.emoji2:emoji2:1.2.0] /Users/atom/.gradle/caches/transforms-3/e04bc3769bedd8dd6f8ca688986b0355/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+76            android:name="androidx.startup.InitializationProvider"
+76-->[androidx.emoji2:emoji2:1.2.0] /Users/atom/.gradle/caches/transforms-3/e04bc3769bedd8dd6f8ca688986b0355/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+77            android:authorities="com.example.gpuiosbundle.androidx-startup"
+77-->[androidx.emoji2:emoji2:1.2.0] /Users/atom/.gradle/caches/transforms-3/e04bc3769bedd8dd6f8ca688986b0355/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+78            android:exported="false" >
+78-->[androidx.emoji2:emoji2:1.2.0] /Users/atom/.gradle/caches/transforms-3/e04bc3769bedd8dd6f8ca688986b0355/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+79            <meta-data
+79-->[androidx.emoji2:emoji2:1.2.0] /Users/atom/.gradle/caches/transforms-3/e04bc3769bedd8dd6f8ca688986b0355/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+80                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+80-->[androidx.emoji2:emoji2:1.2.0] /Users/atom/.gradle/caches/transforms-3/e04bc3769bedd8dd6f8ca688986b0355/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+81                android:value="androidx.startup" />
+81-->[androidx.emoji2:emoji2:1.2.0] /Users/atom/.gradle/caches/transforms-3/e04bc3769bedd8dd6f8ca688986b0355/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+82            <meta-data
+82-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/atom/.gradle/caches/transforms-3/8c1e738388b632b23acecc5b0cf3e292/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+83                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+83-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/atom/.gradle/caches/transforms-3/8c1e738388b632b23acecc5b0cf3e292/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+84                android:value="androidx.startup" />
+84-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/atom/.gradle/caches/transforms-3/8c1e738388b632b23acecc5b0cf3e292/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+85        </provider>
+86    </application>
+87
+88</manifest>

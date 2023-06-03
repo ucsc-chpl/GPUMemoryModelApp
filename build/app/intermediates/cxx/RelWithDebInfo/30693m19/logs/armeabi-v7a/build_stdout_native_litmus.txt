@@ -1,0 +1,12 @@
+ninja: Entering directory `/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a'
+[1/4] Building C object CMakeFiles/native_litmus.dir/dart_api_dl.c.o
+[2/4] Building CXX object CMakeFiles/native_litmus.dir/easyvk.cpp.o
+[3/4] Building CXX object CMakeFiles/native_litmus.dir/litmus.cpp.o
+/Users/atom/gpuiosbundle/android/app/src/main/cpp/litmus.cpp:81:23: warning: ISO C++11 does not allow conversion from string literal to 'char *const' [-Wwritable-strings]
+constexpr char *TAG = "Main";
+                      ^
+/Users/atom/gpuiosbundle/android/app/src/main/cpp/litmus.cpp:518:22: warning: decomposition declarations are a C++17 extension [-Wc++17-extensions]
+    for (const auto& [key, value] : params) {
+                     ^~~~~~~~~~~~
+2 warnings generated.
+[4/4] Linking CXX shared library /Users/atom/gpuiosbundle/build/app/intermediates/cxx/RelWithDebInfo/30693m19/obj/armeabi-v7a/libnative_litmus.so

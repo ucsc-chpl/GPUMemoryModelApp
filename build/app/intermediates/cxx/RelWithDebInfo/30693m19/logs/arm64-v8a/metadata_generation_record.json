@@ -1,0 +1,44 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 26 min SDK version: arm64-v8a",
+    "file_": "/Users/atom/gpuiosbundle/android/app/src/main/cpp/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1189172995
+  },
+  {
+    "level_": 0,
+    "message_": "JSON \u0027/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/arm64-v8a/android_gradle_build.json\u0027 was up-to-date",
+    "file_": "/Users/atom/gpuiosbundle/android/app/src/main/cpp/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 291195646
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "/Users/atom/gpuiosbundle/android/app/src/main/cpp/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1978783749
+  }
+]

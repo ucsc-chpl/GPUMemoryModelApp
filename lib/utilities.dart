@@ -221,7 +221,7 @@ class FFIBridge {
     //     .forEach((l) => print('line: $l'));
   }
 
-  static void tuning(var testName, var spv, var res_spv, var configNum,
+  static Future<void> tuning(var testName, var spv, var res_spv, var configNum,
       var iter, String seed, var tgroup, var mgroup, var size) async {
     //print("reached here");
 
@@ -334,7 +334,7 @@ class FFIBridge {
     // mssg_init(sport);
 
     DynamicLibrary nativeApiLib = Platform.isAndroid
-        ? DynamicLibrary.open('libnative_litmus.so')
+        ? DynamicLibrary.open('libnative_lock.so')
         : DynamicLibrary.process();
 
     final int Function(Pointer<Utf8> a, Pointer<Utf8> b, Pointer<Utf8> c,

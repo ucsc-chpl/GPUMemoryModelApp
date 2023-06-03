@@ -36,6 +36,20 @@ const String workgroup1_thread0_text1 =
 const String workgroup1_thread0_text2 =
     "1.2: r1 = atomic_load_explicit (x,memory_order_relaxed)";
 
+var pressExplorer = false;
+var pressTuning = false;
+var pressConformance = false;
+
+var _visibleExplorer = false;
+var _visibleTuning = false;
+var _visibleTable = false;
+//var _visibleConformance = false;
+
+// var isChecked = false;
+
+// var wwMutant = false;
+// var wwRMWMutant = false;
+
 // create statefull widget class
 class TuningPage extends StatefulWidget {
   const TuningPage({Key? key}) : super(key: key);
@@ -62,230 +76,62 @@ class _TuningPageState extends State<TuningPage> {
   bool default_param = true;
   //late bool _visibleTable;
 
+  bool messagePassingCoherency = false;
+  bool messagePassingBarrier = false;
+  bool loadBufferCoherency = false;
+  bool loadBufferBarrier = false;
+  bool storeBufferCoherency = false;
+  bool storeBufferBarrier = false;
+  bool readCoherency = false;
+  bool readRMWBarrier = false;
+  bool storeCoherency = false;
+  bool storeBarrier = false;
+  bool storeBufferRMWBarrier = false;
+  bool twoPlusTwoWriteCoherency = false;
+  bool twoPlusTwoWriteRMWBarrier = false;
+  bool rr = false;
+  bool rrRMW = false;
+  bool rw = false;
+  bool rwRMW = false;
+  bool wr = false;
+  bool wrRMW = false;
+  bool ww = false;
+  bool wwRMW = false;
+
+  bool messagePassing = false;
+  bool messagePassingBarrier1 = false;
+  bool messagePassingBarrier2 = false;
+  bool messagePassingCoherencyTuning = false;
+  bool loadBuffer = false;
+  bool loadBufferBarrier1 = false;
+  bool loadBufferBarrier2 = false;
+  bool loadBufferCoherencyTuning = false;
+  bool store = false;
+  bool storeBarrier1 = false;
+  bool storeBarrier2 = false;
+  bool storeCoherencyTuning = false;
+  bool readRMW = false;
+  bool readRMWBarrier1 = false;
+  bool readRMWBarrier2 = false;
+  bool readCoherencyTuning = false;
+  bool storeBufferRMW = false;
+  bool storeBufferRMWBarrier1 = false;
+  bool storeBufferRMWBarrier2 = false;
+  bool storeBufferCoherencyTuning = false;
+  bool twoPlusTwoWriteRMW = false;
+  bool twoPlusTwoWriteRMWBarrier1 = false;
+  bool twoPlusTwoWriteRMWBarrier2 = false;
+  bool twoPlusTwoWriteCoherencyTuning = false;
+  bool rrMutant = false;
+  bool rrRMWMutant = false;
+  bool rwMutant = false;
+  bool rwRMWMutant = false;
+  bool wrMutant = false;
+  bool wrRMWMutant = false;
+
   List<DataRow> _rowList = [];
 
-  var pressExplorer = false;
-  var pressTuning = false;
-  var pressConformance = false;
-
-  var _visibleExplorer = false;
-  var _visibleTuning = false;
-  var _visibleTable = false;
-  //var _visibleConformance = false;
-
-  // var isChecked = false;
-
-  var messagePassingCoherency = false;
-  var messagePassingBarrier = false;
-  var loadBufferCoherency = false;
-  var loadBufferBarrier = false;
-  var storeBufferCoherency = false;
-  var storeBufferBarrier = false;
-  var readCoherency = false;
-  var readRMWBarrier = false;
-  var storeCoherency = false;
-  var storeBarrier = false;
-  var storeBufferRMWBarrier = false;
-  var twoPlusTwoWriteCoherency = false;
-  var twoPlusTwoWriteRMWBarrier = false;
-  var rr = false;
-  var rrRMW = false;
-  var rw = false;
-  var rwRMW = false;
-  var wr = false;
-  var wrRMW = false;
-  var ww = false;
-  var wwRMW = false;
-
-  var messagePassing = false;
-  var messagePassingBarrier1 = false;
-  var messagePassingBarrier2 = false;
-  var messagePassingCoherencyTuning = false;
-  var loadBuffer = false;
-  var loadBufferBarrier1 = false;
-  var loadBufferBarrier2 = false;
-  var loadBufferCoherencyTuning = false;
-  var store = false;
-  var storeBarrier1 = false;
-  var storeBarrier2 = false;
-  var storeCoherencyTuning = false;
-  var readRMW = false;
-  var readRMWBarrier1 = false;
-  var readRMWBarrier2 = false;
-  var readCoherencyTuning = false;
-  var storeBufferRMW = false;
-  var storeBufferRMWBarrier1 = false;
-  var storeBufferRMWBarrier2 = false;
-  var storeBufferCoherencyTuning = false;
-  var twoPlusTwoWriteRMW = false;
-  var twoPlusTwoWriteRMWBarrier1 = false;
-  var twoPlusTwoWriteRMWBarrier2 = false;
-  var twoPlusTwoWriteCoherencyTuning = false;
-  var rrMutant = false;
-  var rrRMWMutant = false;
-  var rwMutant = false;
-  var rwRMWMutant = false;
-  var wrMutant = false;
-  var wrRMWMutant = false;
-  // var wwMutant = false;
-  // var wwRMWMutant = false;
-
-  var tuningListMap = {
-    "assets/litmustest_message_passing_default.spv": [
-      "messagePassing",
-      "assets/litmustest_message_passing_results.spv"
-    ],
-
-    "assets/litmustest_message_passing_barrier.spv": [
-      "messagePassingBarrier1",
-      "assets/litmustest_message_passing_results.spv"
-    ],
-
-    "assets/litmustest_message_passing_workgroup_barrier.spv": [
-      "messagePassingBarrier2",
-      "assets/litmustest_message_passing_results.spv"
-    ],
-
-    "assets/litmustest_message_passing_coherency.spv": [
-      "messagePassingCoherencyTuning",
-      "assets/litmustest_message_passing_coherency_results.spv"
-    ],
-
-    "assets/litmustest_load_buffer_default.spv": [
-      "loadBuffer",
-      "assets/litmustest_load_buffer_results.spv"
-    ],
-
-    "assets/litmustest_load_buffer_storage_workgroup_barrier.spv": [
-      "loadBufferBarrier1",
-      "assets/litmustest_load_buffer_results.spv"
-    ],
-
-    "assets/litmustest_load_buffer_workgroup_barrier.spv": [
-      "loadBufferBarrier2",
-      "assets/litmustest_load_buffer_results.spv"
-    ],
-
-    "assets/litmustest_load_buffer_coherency.spv": [
-      "loadBufferCoherencyTuning",
-      "assets/litmustest_load_buffer_coherency_results.spv"
-    ],
-
-    "assets/litmustest_store_default.spv": [
-      "store",
-      "assets/litmustest_store_results.spv"
-    ],
-
-    "assets/litmustest_store_storage_workgroup_barrier.spv": [
-      "storeBarrier1",
-      "assets/litmustest_store_results.spv"
-    ],
-
-    "assets/itmustest_store_workgroup_barrier.spv": [
-      "storeBarrier2",
-      "assets/litmustest_store_results.spv"
-    ],
-
-    "assets/litmustest_store_coherency.spv": [
-      "storeCoherencyTuning",
-      "assets/litmustest_store_coherency_results.spv"
-    ],
-
-    "assets/litmustest_read_default.spv": [
-      "readRMW",
-      "assets/litmustest_read_results.spv"
-    ],
-
-    "assets/litmustest_read_storage_workgroup_rmw_barrier.spv": [
-      "readRMWBarrier1",
-      "assets/litmustest_read_results.spv"
-    ],
-
-    "assets/litmustest_read_workgroup_rmw_barrier.spv": [
-      "readRMWBarrier2",
-      "assets/litmustest_read_results.spv"
-    ],
-
-    "assets/litmustest_read_coherency.spv": [
-      "readCoherencyTuning",
-      "assets/litmustest_read_coherency_results.spv"
-    ],
-
-    "assets/litmustest_store_buffer_default.spv": [
-      "storeBufferRMW",
-      "assets/litmustest_store_buffer_results.spv"
-    ],
-
-    "assets/litmustest_store_buffer_storage_workgroup_rmw_barrier.spv": [
-      "storeBufferRMWBarrier1",
-      "assets/litmustest_store_buffer_results.spv"
-    ],
-
-    "assets/litmustest_store_buffer_workgroup_rmw_barrier.spv": [
-      "storeBufferRMWBarrier2",
-      "assets/litmustest_store_buffer_results.spv"
-    ],
-
-    "assets/litmustest_store_buffer_coherency.spv": [
-      "storeBufferCoherencyTuning",
-      "assets/litmustest_store_buffer_coherency_results.spv"
-    ],
-
-    "assets/litmustest_write_22_default.spv": [
-      "twoPlusTwoWriteRMW",
-      "assets/litmustest_write_22_results.spv"
-    ],
-
-    "assets/litmustest_write_22_storage_workgroup_rmw_barrier.spv": [
-      "twoPlusTwoWriteRMWBarrier1",
-      "assets/litmustest_write_22_results.spv"
-    ],
-
-    "assets/litmustest_write_22_workgroup_rmw_barrier.spv": [
-      "twoPlusTwoWriteRMWBarrier2",
-      "assets/litmustest_write_22_results.spv"
-    ],
-
-    "assets/itmustest_write_22_coherency.spv": [
-      "twoPlusTwoWriteCoherencyTuning",
-      "assets/litmustest_write_22_coherency_results.spv"
-    ],
-
-    "assets/litmustest_corr_mutation.spv": [
-      "rrMutant",
-      "assets/litmustest_corr_results.spv"
-    ],
-
-    "assets/litmustest_corr_rmw_mutation.spv": [
-      "rrRMWMutant",
-      "assets/litmustest_corr_results.spv"
-    ],
-
-    "assets/litmustest_corw2_mutation.spv": [
-      "rwMutant",
-      "assets/litmustest_corw2_results.spv"
-    ],
-
-    "assets/litmustest_corw2_rmw_mutation.spv": [
-      "rwRMWMutant",
-      "assets/litmustest_corw2_results.spv"
-    ],
-
-    "assets/litmustest_cowr_mutation.spv": [
-      "wrMutant",
-      "assets/litmustest_cowr_results.spv"
-    ],
-
-    "assets/litmustest_cowr_rmw1_mutation.spv": [
-      "wrRMWMutant",
-      "assets/llitmustest_cowr_results.spv"
-    ],
-    // "assets/litmustest_coww_rmw.spv": wwMutant,
-    // "assets/litmustest_coww_rmw.spv": wwRMWMutant,
-  };
-
-  var tuningList = {};
-  var conformanceList = {};
+  Map<String, List<String>> tuningListMap = {};
 
 // explorer controllers
   TextEditingController _iter = TextEditingController(text: '100');
@@ -336,72 +182,244 @@ class _TuningPageState extends State<TuningPage> {
     _visibleTable = false;
     _iterationMssg = "Counter is 0";
 
-    var conformanceList = {
-      "assets/litmustest_message_passing_coherency.spv":
-          messagePassingCoherency,
-      "assets/litmustest_message_passing_barrier.spv": messagePassingBarrier,
-      "assets/litmustest_store_coherency.spv": storeCoherency,
-      "assets/litmustest_store_barrier.spv": storeBarrier,
-      "assets/litmustest_read_coherency.spv": readCoherency,
-      "assets/litmustest_read_barrier.spv": readRMWBarrier,
-      "assets/litmustest_load_buffer_coherency.spv": loadBufferCoherency,
-      "assets/litmustest_load_buffer_barrier.spv": loadBufferBarrier,
-      "assets/litmustest_store_buffer_coherency.spv": storeBufferCoherency,
-      "assets/litmustest_store_buffer_rmw_barrier.spv": storeBufferRMWBarrier,
-      "assets/litmustest_write_22_coherency.spv": twoPlusTwoWriteCoherency,
-      "assets/litmustest_write_22_rmw_barrier.spv": twoPlusTwoWriteRMWBarrier,
-      "assets/litmustest_corr_default.spv": rr,
-      "assets/litmustest_corr_rmw.spv": rrRMW,
-      "assets/litmustest_corw2_default.spv": rw,
-      "assets/litmustest_corw2_rmw.spv": rwRMW,
-      "assets/litmustest_cowr_default.spv": wr,
-      "assets/litmustest_cowr_rmw.spv": wrRMW,
-      "assets/litmustest_coww_default.spv": ww,
-      "assets/litmustest_coww_rmw.spv": wwRMW,
-    };
+    tuningListMap = {
+      "assets/litmustest_message_passing_default.spv": [
+        "messagePassing",
+        "assets/litmustest_message_passing_results.spv"
+      ],
 
-    var tuningList = {
-      "assets/litmustest_message_passing_default.spv": messagePassing,
-      "assets/litmustest_message_passing_barrier.spv": messagePassingBarrier1,
-      "assets/litmustest_message_passing_workgroup_barrier.spv":
-          messagePassingBarrier2,
-      "assets/litmustest_message_passing_coherency.spv":
-          messagePassingCoherencyTuning,
-      "assets/litmustest_load_buffer_default.spv": loadBuffer,
-      "assets/litmustest_load_buffer_storage_workgroup_barrier.spv":
-          loadBufferBarrier1,
-      "assets/litmustest_load_buffer_workgroup_barrier.spv": loadBufferBarrier2,
-      "assets/litmustest_load_buffer_coherency.spv": loadBufferCoherencyTuning,
-      "assets/litmustest_store_default.spv": store,
-      "assets/litmustest_store_storage_workgroup_barrier.spv": storeBarrier1,
-      "assets/itmustest_store_workgroup_barrier.spv": storeBarrier2,
-      "assets/litmustest_store_coherency.spv": storeCoherencyTuning,
-      "assets/litmustest_read_default.spv": readRMW,
-      "assets/litmustest_read_storage_workgroup_rmw_barrier.spv":
-          readRMWBarrier1,
-      "assets/litmustest_read_workgroup_rmw_barrier.spv": readRMWBarrier2,
-      "assets/litmustest_read_coherency.spv": readCoherencyTuning,
-      "assets/litmustest_store_buffer_default.spv": storeBufferRMW,
-      "assets/litmustest_store_buffer_storage_workgroup_rmw_barrier.spv":
-          storeBufferRMWBarrier1,
-      "assets/litmustest_store_buffer_workgroup_rmw_barrier.spv":
-          storeBufferRMWBarrier2,
-      "assets/litmustest_store_buffer_coherency.spv":
-          storeBufferCoherencyTuning,
-      "assets/litmustest_write_22_default.spv": twoPlusTwoWriteRMW,
-      "assets/litmustest_write_22_storage_workgroup_rmw_barrier.spv":
-          twoPlusTwoWriteRMWBarrier1,
-      "assets/litmustest_write_22_workgroup_rmw_barrier.spv":
-          twoPlusTwoWriteRMWBarrier2,
-      "assets/itmustest_write_22_coherency.spv": twoPlusTwoWriteCoherencyTuning,
-      "assets/litmustest_corr_mutation.spv": rrMutant,
-      "assets/litmustest_corr_rmw_mutation.spv": rrRMWMutant,
-      "assets/litmustest_corw2_mutation.spv": rwMutant,
-      "assets/litmustest_corw2_rmw_mutation.spv": rwRMWMutant,
-      "assets/litmustest_cowr_mutation.spv": wrMutant,
-      "assets/litmustest_cowr_rmw1_mutation.spv": wrRMWMutant,
+      "assets/litmustest_message_passing_storage_workgroup_barrier.spv": [
+        "messagePassingBarrier1",
+        "assets/litmustest_message_passing_results.spv"
+      ],
+
+      "assets/litmustest_message_passing_workgroup_barrier.spv": [
+        "messagePassingBarrier2",
+        "assets/litmustest_message_passing_results.spv"
+      ],
+
+      "assets/litmustest_message_passing_strong.spv": [
+        "messagePassingCoherencyTuning",
+        "assets/litmustest_message_passing_results.spv"
+      ],
+
+      "assets/litmustest_load_buffer_default.spv": [
+        "loadBuffer",
+        "assets/litmustest_load_buffer_results.spv"
+      ],
+
+      "assets/litmustest_load_buffer_storage_workgroup_barrier.spv": [
+        "loadBufferBarrier1",
+        "assets/litmustest_load_buffer_results.spv"
+      ],
+
+      "assets/litmustest_load_buffer_workgroup_barrier.spv": [
+        "loadBufferBarrier2",
+        "assets/litmustest_load_buffer_results.spv"
+      ],
+
+      "assets/litmustest_load_buffer_storage_workgroup.spv": [
+        "loadBufferCoherencyTuning",
+        "assets/litmustest_load_buffer_results.spv"
+      ],
+
+      "assets/litmustest_store_default.spv": [
+        "store",
+        "assets/litmustest_store_results.spv"
+      ],
+
+      "assets/litmustest_store_storage_workgroup_barrier.spv": [
+        "storeBarrier1",
+        "assets/litmustest_store_results.spv"
+      ],
+
+      "assets/litmustest_store_workgroup_barrier.spv": [
+        "storeBarrier2",
+        "assets/litmustest_store_results.spv"
+      ],
+
+      "assets/litmustest_store_storage_workgroup.spv": [
+        "storeCoherencyTuning",
+        "assets/litmustest_store_coherency_results.spv"
+      ],
+
+      "assets/litmustest_read_default.spv": [
+        "readRMW",
+        "assets/litmustest_read_results.spv"
+      ],
+
+      "assets/litmustest_read_storage_workgroup_rmw_barrier.spv": [
+        "readRMWBarrier1",
+        "assets/litmustest_read_results.spv"
+      ],
+
+      "assets/litmustest_read_workgroup_rmw_barrier.spv": [
+        "readRMWBarrier2",
+        "assets/litmustest_read_results.spv"
+      ],
+
+      "assets/litmustest_read_storage_workgroup.spv": [
+        "readCoherencyTuning",
+        "assets/litmustest_read_coherency_results.spv"
+      ],
+
+      "assets/litmustest_store_buffer_default.spv": [
+        "storeBufferRMW",
+        "assets/litmustest_store_buffer_results.spv"
+      ],
+
+      "assets/litmustest_store_buffer_storage_workgroup_rmw_barrier.spv": [
+        "storeBufferRMWBarrier1",
+        "assets/litmustest_store_buffer_results.spv"
+      ],
+
+      "assets/litmustest_store_buffer_workgroup_rmw_barrier.spv": [
+        "storeBufferRMWBarrier2",
+        "assets/litmustest_store_buffer_results.spv"
+      ],
+
+      "assets/litmustest_store_buffer_storage_workgroup.spv": [
+        "storeBufferCoherencyTuning",
+        "assets/litmustest_store_buffer_coherency_results.spv"
+      ],
+
+      "assets/litmustest_write_22_default.spv": [
+        "twoPlusTwoWriteRMW",
+        "assets/litmustest_write_22_results.spv"
+      ],
+
+      "assets/litmustest_write_22_storage_workgroup_rmw_barrier.spv": [
+        "twoPlusTwoWriteRMWBarrier1",
+        "assets/litmustest_write_22_results.spv"
+      ],
+
+      "assets/litmustest_write_22_workgroup_rmw_barrier.spv": [
+        "twoPlusTwoWriteRMWBarrier2",
+        "assets/litmustest_write_22_results.spv"
+      ],
+
+      "assets/litmustest_write_22_coherency.spv": [
+        "twoPlusTwoWriteCoherencyTuning",
+        "assets/litmustest_write_22_coherency_results.spv"
+      ],
+
+      "assets/litmustest_corr_mutation.spv": [
+        "rrMutant",
+        "assets/litmustest_corr_results.spv"
+      ],
+
+      "assets/litmustest_corr_rmw_mutation.spv": [
+        "rrRMWMutant",
+        "assets/litmustest_corr_results.spv"
+      ],
+
+      "assets/litmustest_corw2_mutation.spv": [
+        "rwMutant",
+        "assets/litmustest_corw2_results.spv"
+      ],
+
+      "assets/litmustest_corw2_rmw_mutation.spv": [
+        "rwRMWMutant",
+        "assets/litmustest_corw2_results.spv"
+      ],
+
+      "assets/litmustest_cowr_mutation.spv": [
+        "wrMutant",
+        "assets/litmustest_cowr_results.spv"
+      ],
+
+      "assets/litmustest_cowr_rmw1_mutation.spv": [
+        "wrRMWMutant",
+        "assets/litmustest_cowr_results.spv"
+      ],
       // "assets/litmustest_coww_rmw.spv": wwMutant,
       // "assets/litmustest_coww_rmw.spv": wwRMWMutant,
+      //};
+
+      //Map<String, bool> conformanceList = {
+      "assets/litmustest_message_passing_coherency.spv": [
+        "messagePassingCoherency",
+        "assets/litmustest_message_passing_coherency_results.spv"
+      ],
+      "assets/litmustest_message_passing_barrier.spv": [
+        "messagePassingBarrier",
+        "assets/litmustest_message_passing_results.spv"
+      ],
+      "assets/litmustest_store_coherency.spv": [
+        "storeCoherency",
+        "assets/litmustest_store_coherency_results.spv"
+      ],
+      "assets/litmustest_store_barrier.spv": [
+        "storeBarrier",
+        "assets/litmustest_store_results.spv"
+      ],
+      "assets/litmustest_read_coherency.spv": [
+        "readCoherency",
+        "assets/litmustest_read_results.spv"
+      ],
+      "assets/litmustest_read_barrier.spv": [
+        "readRMWBarrier",
+        "assets/litmustest_read_results.spv"
+      ],
+
+      "assets/litmustest_load_buffer_barrier.spv": [
+        "loadBufferBarrier",
+        "assets/litmustest_load_buffer_results.spv"
+      ],
+
+      "assets/litmustest_load_buffer_coherency.spv": [
+        "loadBufferCoherency",
+        "assets/litmustest_load_buffer_coherency_results.spv"
+      ],
+
+      "assets/litmustest_store_buffer_coherency.spv": [
+        "storeBufferCoherency",
+        "assets/litmustest_store_buffer_coherency_results.spv"
+      ],
+      "assets/litmustest_store_buffer_rmw_barrier.spv": [
+        "storeBufferRMWBarrier",
+        "assets/litmustest_store_buffer_results.spv"
+      ],
+      "assets/litmustest_write_22_coherency.spv": [
+        "twoPlusTwoWriteCoherency",
+        "assets/litmustest_write_22_coherency_results.spv"
+      ],
+      "assets/litmustest_write_22_rmw_barrier.spv": [
+        "twoPlusTwoWriteRMWBarrier",
+        "assets/litmustest_write_22_results.spv"
+      ],
+      "assets/litmustest_corr_default.spv": [
+        "rr",
+        "assets/litmustest_corr_results.spv"
+      ],
+      "assets/litmustest_corr_rmw.spv": [
+        "rrRMW",
+        "assets/litmustest_corr_results.spv"
+      ],
+      "assets/litmustest_corw2_default.spv": [
+        "rw",
+        "assets/litmustest_corw2_results.spv"
+      ],
+      "assets/litmustest_corw2_rmw.spv": [
+        "rwRMW",
+        "assets/litmustest_corw2_results.spv"
+      ],
+      "assets/litmustest_cowr_default.spv": [
+        "wr",
+        "assets/litmustest_cowr_results.spv"
+      ],
+      "assets/litmustest_cowr_rmw.spv": [
+        "wrRMW",
+        "assets/litmustest_cowr_results.spv"
+      ],
+      "assets/litmustest_coww_default.spv": [
+        "ww",
+        "assets/litmustest_coww_results.spv"
+      ],
+      "assets/litmustest_coww_rmw.spv": [
+        "wwRMW",
+        "assets/litmustest_coww_results.spv"
+      ],
     };
   }
 
@@ -425,19 +443,19 @@ class _TuningPageState extends State<TuningPage> {
   //   });
   // }
 
-  void _tuningClick() {
-    print("reached here");
-    FFIBridge.tuning(
-        "Tuning Test",
-        shader_spv,
-        result_spv,
-        _tConfigNum.text,
-        _tIter.text,
-        _tRandomSeed.text,
-        _tWorkgroup.text,
-        _tMaxworkgroup.text,
-        _tSize.text);
-  }
+  // void _tuningClick() {
+  //   print("reached here");
+  //   FFIBridge.tuning(
+  //       "Tuning Test",
+  //       shader_spv,
+  //       result_spv,
+  //       _tConfigNum.text,
+  //       _tIter.text,
+  //       _tRandomSeed.text,
+  //       _tWorkgroup.text,
+  //       _tMaxworkgroup.text,
+  //       _tSize.text);
+  // }
 
   void _changeStress() {
     _iter.text = '100';
@@ -484,10 +502,14 @@ class _TuningPageState extends State<TuningPage> {
   }
 
   void _computeTuning() async {
+    //print(messagePassing);
+
+    print("here");
+
     setState(() {
       _counter = 0;
       _iterationMssg = "Computed $_counter from 100";
-      _visible = true;
+      _visible = false;
       _visibleTable = true;
     });
 
@@ -503,11 +525,153 @@ class _TuningPageState extends State<TuningPage> {
 
     var active_shaders = [];
 
-    tuningList.forEach((key, value) {
-      if (value == true) {
-        active_shaders.add(key);
-      }
-    });
+    if (messagePassing)
+      active_shaders.add("assets/litmustest_message_passing_default.spv");
+
+    if (messagePassingBarrier1)
+      active_shaders.add(
+          "assets/litmustest_message_passing_storage_workgroup_barrier.spv");
+
+    if (messagePassingBarrier2)
+      active_shaders
+          .add("assets/litmustest_message_passing_workgroup_barrier.spv");
+
+    if (messagePassingCoherencyTuning)
+      active_shaders.add("assets/litmustest_message_passing_strong.spv");
+
+    if (loadBuffer)
+      active_shaders.add("assets/litmustest_load_buffer_default.spv");
+
+    if (loadBufferBarrier1)
+      active_shaders
+          .add("assets/litmustest_load_buffer_storage_workgroup_barrier.spv");
+
+    if (loadBufferBarrier2)
+      active_shaders.add("assets/litmustest_load_buffer_workgroup_barrier.spv");
+
+    if (loadBufferCoherencyTuning)
+      active_shaders.add("assets/litmustest_load_buffer_storage_workgroup.spv");
+
+    if (store) active_shaders.add("assets/litmustest_store_default.spv");
+
+    if (storeBarrier1)
+      active_shaders
+          .add("assets/litmustest_store_storage_workgroup_barrier.spv");
+
+    if (storeBarrier2)
+      active_shaders.add("assets/litmustest_store_workgroup_barrier.spv");
+
+    if (storeCoherencyTuning)
+      active_shaders.add("assets/litmustest_store_storage_workgroup.spv");
+
+    if (readRMW) active_shaders.add("assets/litmustest_read_default.spv");
+
+    if (readRMWBarrier1)
+      active_shaders
+          .add("assets/litmustest_read_storage_workgroup_rmw_barrier.spv");
+
+    if (readRMWBarrier2)
+      active_shaders.add("assets/litmustest_read_workgroup_rmw_barrier.spv");
+
+    if (readCoherencyTuning)
+      active_shaders.add("assets/litmustest_read_storage_workgroup.spv");
+
+    if (storeBufferRMW)
+      active_shaders.add("assets/litmustest_store_buffer_default.spv");
+
+    if (storeBufferRMWBarrier1)
+      active_shaders.add(
+          "assets/litmustest_store_buffer_storage_workgroup_rmw_barrier.spv");
+
+    if (storeBufferRMWBarrier2)
+      active_shaders
+          .add("assets/litmustest_store_buffer_workgroup_rmw_barrier.spv");
+
+    if (storeBufferCoherencyTuning)
+      active_shaders
+          .add("assets/litmustest_store_buffer_storage_workgroup.spv");
+
+    if (twoPlusTwoWriteRMW)
+      active_shaders.add("assets/litmustest_write_22_default.spv");
+
+    if (twoPlusTwoWriteRMWBarrier1)
+      active_shaders
+          .add("assets/litmustest_write_22_storage_workgroup_rmw_barrier.spv");
+
+    if (twoPlusTwoWriteRMWBarrier2)
+      active_shaders
+          .add("assets/litmustest_write_22_workgroup_rmw_barrier.spv");
+
+    if (twoPlusTwoWriteCoherencyTuning)
+      active_shaders.add("assets/litmustest_write_22_coherency.spv");
+
+    if (rrMutant) active_shaders.add("assets/litmustest_corr_mutation.spv");
+
+    if (rrRMWMutant)
+      active_shaders.add("assets/litmustest_corr_rmw_mutation.spv");
+
+    if (rwMutant) active_shaders.add("assets/litmustest_corw2_mutation.spv");
+
+    if (rwRMWMutant)
+      active_shaders.add("assets/litmustest_corw2_rmw_mutation.spv");
+
+    if (wrMutant) active_shaders.add("assets/litmustest_cowr_mutation.spv");
+
+    if (wrRMWMutant)
+      active_shaders.add("assets/litmustest_cowr_rmw1_mutation.spv");
+    // "assets/litmustest_coww_rmw.spv": wwMutant,
+    // "assets/litmustest_coww_rmw.spv": wwRMWMutant,
+
+    if (messagePassingCoherency)
+      active_shaders.add("assets/litmustest_message_passing_coherency.spv");
+
+    if (messagePassingBarrier)
+      active_shaders.add("assets/litmustest_message_passing_barrier.spv");
+
+    if (storeCoherency)
+      active_shaders.add("assets/litmustest_store_coherency.spv");
+
+    if (storeBarrier) active_shaders.add("assets/litmustest_store_barrier.spv");
+
+    if (readCoherency)
+      active_shaders.add("assets/litmustest_read_coherency.spv");
+
+    if (readRMWBarrier)
+      active_shaders.add("assets/litmustest_read_barrier.spv");
+
+    if (loadBufferCoherency)
+      active_shaders.add("assets/litmustest_load_buffer_coherency.spv");
+
+    if (loadBufferBarrier)
+      active_shaders.add("assets/litmustest_load_buffer_barrier.spv");
+
+    if (storeBufferCoherency)
+      active_shaders.add("assets/litmustest_store_buffer_coherency.spv");
+
+    if (storeBufferRMWBarrier)
+      active_shaders.add("assets/litmustest_store_buffer_rmw_barrier.spv");
+
+    if (twoPlusTwoWriteCoherency)
+      active_shaders.add("assets/litmustest_write_22_coherency.spv");
+
+    if (twoPlusTwoWriteRMWBarrier)
+      active_shaders.add("assets/litmustest_write_22_rmw_barrier.spv");
+
+    if (rr) active_shaders.add("assets/litmustest_corr_default.spv");
+
+    if (rrRMW) active_shaders.add("assets/litmustest_corr_rmw.spv");
+
+    if (rw) active_shaders.add("assets/litmustest_corw2_default.spv");
+
+    if (rwRMW) active_shaders.add("assets/litmustest_corw2_rmw.spv");
+
+    if (wr) active_shaders.add("assets/litmustest_cowr_default.spv");
+
+    if (wrRMW) active_shaders.add("assets/litmustest_cowr_rmw.spv");
+
+    if (ww) active_shaders.add("assets/litmustest_coww_default.spv");
+
+    if (wwRMW) active_shaders.add("assets/litmustest_coww_rmw.spv");
 
     currTestIterations = int.parse(_tIter.text);
     tuningTestWorkgroups = int.parse(_tWorkgroup.text);
@@ -526,44 +690,119 @@ class _TuningPageState extends State<TuningPage> {
       tmpRandom = Random(prngGen(seed));
     }
 
-    var tuningoutput = "$cache" + "/tuning.txt";
+    //print(active_shaders);
+
+    List<String> output_list = List<String>.filled(10, "");
+
+    _rowList = [];
 
     for (int i = 0; i < numConfig; i++) {
-      // var tuningRandom = Random(tmpRandom.nextInt(prngGen(seed)));
+      var tuningRandom = Random(tmpRandom.nextInt(prngGen(seed)));
 
       // // create the parameters
-      // await FFIBridge.writetuningParams("Tuning Test", false);
+      await FFIBridge.writetuningParams("Tuning Test", false);
+
+      // print(cache);
+      //var tuningoutput = "$cache" + "/tuning.txt";
+
+      var totalTest = TextEditingController();
+
+      var completed = TextEditingController();
+      var time = TextEditingController();
+      time.text = '0';
+      var percentage = TextEditingController();
+      var seq = TextEditingController();
+      seq.text = '0';
+      var interleaved = TextEditingController();
+      interleaved.text = '0';
+      var weak = TextEditingController();
+      weak.text = '0';
+
+      var index = i + 1;
+
+      _rowList.add(DataRow(cells: <DataCell>[
+        DataCell(Text('$index')),
+        DataCell(MaterialButton(
+          onPressed: () {
+            showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                      title: Text('Tuning Config [$index]'),
+                      content: SingleChildScrollView(
+                        // won't be scrollable
+                        child: Text(output_list[i]),
+                      ),
+                    ));
+            //});
+          },
+          child: Text("Statistics"),
+          color: Colors.blue,
+        )),
+        DataCell(TextField(textAlign: TextAlign.center, controller: completed)),
+        DataCell(
+            TextField(textAlign: TextAlign.center, controller: percentage)),
+        DataCell(TextField(textAlign: TextAlign.center, controller: time)),
+        DataCell(TextField(textAlign: TextAlign.center, controller: seq)),
+        DataCell(
+            TextField(textAlign: TextAlign.center, controller: interleaved)),
+        DataCell(TextField(textAlign: TextAlign.center, controller: weak)),
+      ]));
 
       // // open a outputFile
       // File file = await File(tuningoutput).create(recursive: true);
 
-      // for (int i = 0; i < active_shaders.length; i++) {
-      //   await call_bridge(
-      //       param_tmp, active_shaders[i], tuningListMap[active_shaders[i]]![1]);
-      //   var tmp_Str = File(outputFile).readAsStringSync();
-      //   await file.writeAsString(tmp_Str, mode: FileMode.append);
-      // }
+      var map = {};
+
+      for (int i = 0; i < active_shaders.length; i++) {
+        // print(tuningListMap[active_shaders[i]]![1]);
+
+        print(active_shaders[i]);
+        print(tuningListMap[active_shaders[i]]);
+
+        await call_bridge(
+            param_tmp, active_shaders[i], tuningListMap[active_shaders[i]]![1]);
+
+        //var tmp = File(outputFile).readAsStringSync();
+
+        // print(tmp);
+
+        var tmp_map = jsonDecode(File(outputFile).readAsStringSync());
+
+        map[tuningListMap[active_shaders[i]]![0]] = tmp_map['GPU Litmus Test'];
+
+        //print(tmp_str['GPU Litmus Test']);
+        //   await file.writeAsString(tmp_Str, mode: FileMode.append);
+
+        setState(() {
+          // output_list[i] = JsonEncoder.withIndent(' ' * 4).convert(tmp_map);
+          //totalTest = numConfig;
+          var len = active_shaders.length;
+          completed.text = (i + 1).toString() + "/$len";
+          time.text = (double.parse(time.text) + tmp_map['Time Elapsed'])
+              .toString()
+              .substring(0, 5);
+          percentage.text =
+              ((((i + 1) / active_shaders.length) * (100)).round()).toString() +
+                  "%";
+          seq.text = (int.parse(seq.text) + tmp_map['GPU Litmus Test']['seq'])
+              .toString();
+          interleaved.text = (int.parse(interleaved.text) +
+                  tmp_map['GPU Litmus Test']['interleaved'])
+              .toString();
+          weak.text =
+              (int.parse(weak.text) + tmp_map['GPU Litmus Test']['weak'])
+                  .toString();
+        });
+      }
 
       setState(() {
-        // This call to setState tells the Flutter framework that something has
-        // changed in this State, which causes it to rerun the build method below.
-
-        _rowList.add(DataRow(cells: <DataCell>[
-          DataCell(Text('$i')),
-          DataCell(MaterialButton(
-            onPressed: () {},
-            child: Text("Statistics"),
-            color: Colors.blue,
-          )),
-          DataCell(Text('No')),
-          DataCell(Text('No')),
-          DataCell(Text('No')),
-          DataCell(Text('No')),
-          DataCell(Text('No')),
-          DataCell(Text('No')),
-        ]));
+        output_list[i] = JsonEncoder.withIndent(' ' * 4).convert(map);
       });
+      // }
     }
+
+    // This call to setState tells the Flutter framework that something has
+    // changed in this State, which causes it to rerun the build method below.
   }
 
   void _compute() async {
@@ -651,7 +890,7 @@ class _TuningPageState extends State<TuningPage> {
       //print("${key} = ${value}");
     });
 
-    print(param_tmp);
+    // print(param_tmp);
 
     File(param_tmp)
         .openRead()
@@ -1530,8 +1769,8 @@ class _TuningPageState extends State<TuningPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                _tuningClick();
-                                Navigator.of(context).pop();
+                                _computeTuning();
+                                // Navigator.of(context).pop();
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.green,
@@ -1609,6 +1848,11 @@ class _TuningPageState extends State<TuningPage> {
                   ),
                 ),
                 //  Row(mainAxisSize: MainAxisSize.min,
+                // SingleChildScrollView(
+                //     scrollDirection: Axis.vertical,
+                // child: SizedBox(
+                //     height: 100,
+                //   child:
                 Wrap(children: <Widget>[
                   Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
@@ -1618,7 +1862,7 @@ class _TuningPageState extends State<TuningPage> {
                       value: messagePassingCoherency,
                       onChanged: (bool? value) {
                         setState(() {
-                          messagePassing = value!;
+                          messagePassingCoherency = value!;
                         });
                       },
                     ),
@@ -1757,6 +2001,9 @@ class _TuningPageState extends State<TuningPage> {
                         'readCoherency',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -1775,6 +2022,9 @@ class _TuningPageState extends State<TuningPage> {
                         'readRMWBarrier',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -1814,6 +2064,9 @@ class _TuningPageState extends State<TuningPage> {
                         'storeBufferRMWBarrier',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -1832,6 +2085,9 @@ class _TuningPageState extends State<TuningPage> {
                         'twoPlusTwoWriteCoherency',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -1871,6 +2127,9 @@ class _TuningPageState extends State<TuningPage> {
                         'rr',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -1889,6 +2148,9 @@ class _TuningPageState extends State<TuningPage> {
                         'rrRMW',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -1928,6 +2190,8 @@ class _TuningPageState extends State<TuningPage> {
                         'rwRMW',
                       ),
                     ),
+                  ]),
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -1946,6 +2210,8 @@ class _TuningPageState extends State<TuningPage> {
                         'wr',
                       ),
                     ),
+                  ]),
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -1985,6 +2251,9 @@ class _TuningPageState extends State<TuningPage> {
                         'ww',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2005,6 +2274,8 @@ class _TuningPageState extends State<TuningPage> {
                     ),
                   ]),
                 ]),
+                //)
+                //    ),
 
                 const SizedBox(height: 10),
                 const Padding(
@@ -2019,6 +2290,10 @@ class _TuningPageState extends State<TuningPage> {
                   ),
                 ),
 
+                // SingleChildScrollView(
+                //   scrollDirection: Axis.horizontal,
+                //   child:
+                //
                 Wrap(children: [
                   Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
@@ -2039,6 +2314,9 @@ class _TuningPageState extends State<TuningPage> {
                         'messagePassing',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2057,6 +2335,8 @@ class _TuningPageState extends State<TuningPage> {
                         'messagePassingBarrier1',
                       ),
                     ),
+                  ]),
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2096,6 +2376,9 @@ class _TuningPageState extends State<TuningPage> {
                         'messagePassingCoherencyTuning',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2114,6 +2397,9 @@ class _TuningPageState extends State<TuningPage> {
                         'loadBuffer',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2153,6 +2439,9 @@ class _TuningPageState extends State<TuningPage> {
                         'loadBufferBarrier2',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2171,6 +2460,9 @@ class _TuningPageState extends State<TuningPage> {
                         'loadBufferCoherencyTuning',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2210,6 +2502,9 @@ class _TuningPageState extends State<TuningPage> {
                         'storeBarrier1',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2228,6 +2523,9 @@ class _TuningPageState extends State<TuningPage> {
                         'storeBarrier2',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2267,6 +2565,8 @@ class _TuningPageState extends State<TuningPage> {
                         'readRMW',
                       ),
                     ),
+                  ]),
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2285,6 +2585,9 @@ class _TuningPageState extends State<TuningPage> {
                         'readRMWBarrier1',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2324,6 +2627,9 @@ class _TuningPageState extends State<TuningPage> {
                         'readCoherencyTuning',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2342,6 +2648,9 @@ class _TuningPageState extends State<TuningPage> {
                         'storeBufferRMW',
                       ),
                     ),
+                  ]),
+
+                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Checkbox(
                       // title: Text('Message Passing'),
                       activeColor: Colors.white,
@@ -2644,7 +2953,11 @@ class _TuningPageState extends State<TuningPage> {
                   //     ),
                   //   ),
                   // ]),
+
+                  //endhere
                 ]),
+                // ]),
+
                 const Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text(
@@ -2739,30 +3052,30 @@ class _TuningPageState extends State<TuningPage> {
                 Wrap(
                   // mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    SizedBox(
-                      width: 140, // <-- Your width
-                      height: 50, // <-- Your height
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: pressExplorer
-                                ? MaterialStatePropertyAll<Color>(Colors.green)
-                                : MaterialStatePropertyAll<Color>(Colors.grey),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              pressExplorer = true;
-                              pressTuning = false;
-                              pressConformance = false;
-                              _visibleExplorer = true;
-                              _visibleTuning = false;
-                            });
-                          },
-                          child: const Text('Explorer'),
-                        ),
-                      ),
-                    ),
+                    // SizedBox(
+                    //   width: 140, // <-- Your width
+                    //   height: 50, // <-- Your height
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(5.0),
+                    //     child: ElevatedButton(
+                    //       style: ButtonStyle(
+                    //         backgroundColor: pressExplorer
+                    //             ? MaterialStatePropertyAll<Color>(Colors.green)
+                    //             : MaterialStatePropertyAll<Color>(Colors.grey),
+                    //       ),
+                    //       onPressed: () {
+                    //         setState(() {
+                    //           pressExplorer = true;
+                    //           pressTuning = false;
+                    //           pressConformance = false;
+                    //           _visibleExplorer = true;
+                    //           _visibleTuning = false;
+                    //         });
+                    //       },
+                    //       child: const Text('Explorer'),
+                    //     ),
+                    //   ),
+                    // ),
                     // const SizedBox(height: 30),
 
                     SizedBox(
@@ -2785,7 +3098,7 @@ class _TuningPageState extends State<TuningPage> {
                               _visibleTuning = true;
                               _visibleTable = true;
 
-                              _computeTuning();
+                              // _computeTuning();
                             });
                           },
                           child: const Text('Tuning'),
@@ -2813,6 +3126,8 @@ class _TuningPageState extends State<TuningPage> {
                               _visibleExplorer = false;
                               _visibleTuning = true;
                             });
+
+                            // _computeTuning();
                           },
                           child: Text('Tune/Conform'),
                         ),
@@ -3286,8 +3601,8 @@ class _TuningPageState extends State<TuningPage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    _compute();
-                                    Navigator.of(context).pop();
+                                    _computeTuning();
+                                    //Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors.green,
@@ -3461,8 +3776,8 @@ class _TuningPageState extends State<TuningPage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      _tuningClick();
-                                      Navigator.of(context).pop();
+                                      _computeTuning();
+                                      // Navigator.of(context).pop();
                                     },
                                     style: ElevatedButton.styleFrom(
                                       primary: Colors.green,

@@ -23,6 +23,13 @@
       "artifactName": "native_litmus",
       "output": "/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so",
       "runtimeFiles": []
+    },
+    "native_lock::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "native_lock",
+      "output": "/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_lock.so",
+      "runtimeFiles": []
     }
   },
   "toolchains": {

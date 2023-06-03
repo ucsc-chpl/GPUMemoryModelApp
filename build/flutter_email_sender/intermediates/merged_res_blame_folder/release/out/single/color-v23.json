@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/color-v23/abc_btn_colored_text_material.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/color-v23/abc_tint_btn_checkable.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/color-v23/abc_color_highlight_material.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/color-v23/abc_tint_edittext.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/color-v23/abc_tint_default.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/color-v23/abc_tint_spinner.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/color-v23/abc_tint_switch_track.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/color-v23/abc_tint_seek_thumb.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/color-v23/abc_tint_seek_thumb.xml"
+    }
+]

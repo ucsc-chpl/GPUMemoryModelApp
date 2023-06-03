@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "com.sidlatau.flutteremailsender.flutter_email_sender-merged_res-24:/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "com.sidlatau.flutteremailsender.flutter_email_sender-appcompat-1.5.1-12:/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    }
+]

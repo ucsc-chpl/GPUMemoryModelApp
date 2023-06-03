@@ -26,6 +26,17 @@ add_library( # Sets the name of the library.
              dart_api_dl.c
         )
 
+add_library( # Sets the name of the library.
+        native_lock
+
+         # Sets the library as a shared library.
+         SHARED
+
+         # Provides a relative path to your source file(s).
+         lock.cpp easyvk.cpp
+         dart_api_dl.c
+    )
+
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library
@@ -46,6 +57,15 @@ add_library( # Sets the name of the library.
 target_link_libraries( # Specifies the target library.
 
                         native_litmus
+
+                       # Links the target library to the log library
+                       # included in the NDK.
+                      # ${log-lib}
+                        vulkan)
+
+target_link_libraries( # Specifies the target library.
+
+                        native_lock
 
                        # Links the target library to the log library
                        # included in the NDK.

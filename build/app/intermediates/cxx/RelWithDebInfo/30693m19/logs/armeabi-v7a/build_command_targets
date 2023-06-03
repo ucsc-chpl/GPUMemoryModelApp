@@ -1,0 +1,5 @@
+/Users/atom/Library/Android/sdk/cmake/3.18.1/bin/ninja \
+  -C \
+  /Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a \
+  native_litmus \
+  native_lock

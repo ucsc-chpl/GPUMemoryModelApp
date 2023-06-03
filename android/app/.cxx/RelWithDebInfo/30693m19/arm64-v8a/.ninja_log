@@ -1,0 +1,11 @@
+# ninja log v5
+4	528	1685660980	CMakeFiles/native_litmus.dir/dart_api_dl.c.o	94fb48155512e0be
+2	4644	1685660984	CMakeFiles/native_litmus.dir/easyvk.cpp.o	b1ee9d3c523ddca3
+0	5190	1685660985	CMakeFiles/native_litmus.dir/litmus.cpp.o	5567191eade0bc54
+5190	5381	1685660985	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/RelWithDebInfo/30693m19/obj/arm64-v8a/libnative_litmus.so	fbdbff313bdfaaa4
+6	1288	1685689905	CMakeFiles/native_lock.dir/dart_api_dl.c.o	63ad029d082e2f98
+5	6692	1685689911	CMakeFiles/native_lock.dir/easyvk.cpp.o	51e64bfd8c59d47d
+3	9894	1685689914	CMakeFiles/native_lock.dir/lock.cpp.o	23bac96b831adf80
+9895	10431	1685689914	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/RelWithDebInfo/30693m19/obj/arm64-v8a/libnative_lock.so	518a252283b2483f
+8	12283	1685689916	CMakeFiles/native_litmus.dir/litmus.cpp.o	5567191eade0bc54
+12283	12445	1685689916	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/RelWithDebInfo/30693m19/obj/arm64-v8a/libnative_litmus.so	fbdbff313bdfaaa4

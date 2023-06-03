@@ -1,0 +1,4 @@
+/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a/CMakeFiles/native_lock.dir
+/Users/atom/gpuiosbundle/android/app/.cxx/RelWithDebInfo/30693m19/armeabi-v7a/CMakeFiles/native_litmus.dir

@@ -27,7 +27,7 @@ List<Data> list = [
   Data(2, 40, Colors.red)
 ];
 
-void initList() async {
+Future<void> initList([var configNumber]) async {
   // read from the output json file
 
   // add the params to the list
@@ -41,13 +41,34 @@ void initList() async {
 
   // interleaved, seq and weak
 
-  yaxis_length = user["params"]["iterations"].toDouble() *
-      user["params"]["testingWorkgroups"].toDouble() *
-      user["params"]["workgroupSize"].toDouble();
+  if (configNumber == null) {
+    yaxis_length = user["params"]["iterations"].toDouble() *
+        user["params"]["testingWorkgroups"].toDouble() *
+        user["params"]["workgroupSize"].toDouble();
 
-  list[0].yaxis = user["GPU Litmus Test"]["interleaved"].toDouble();
-  list[1].yaxis = user["GPU Litmus Test"]["seq"].toDouble();
-  list[2].yaxis = user["GPU Litmus Test"]["weak"].toDouble();
+    list[0].yaxis = user["GPU Litmus Test"]["interleaved"].toDouble();
+    list[1].yaxis = user["GPU Litmus Test"]["seq"].toDouble();
+    list[2].yaxis = user["GPU Litmus Test"]["weak"].toDouble();
+  } else {
+    yaxis_length = 0;
+    list[0].yaxis = 0;
+    list[1].yaxis = 0;
+    list[2].yaxis = 0;
+
+    for (int i = 0; i < int.parse(configNumber); i++) {
+      print("from init + $i");
+      yaxis_length = yaxis_length +
+          user['$i']["params"]["iterations"].toDouble() *
+              user['$i']["params"]["testingWorkgroups"].toDouble() *
+              user['$i']["params"]["workgroupSize"].toDouble();
+      list[0].yaxis = list[0].yaxis +
+          user['$i']["GPU Litmus Test"]["interleaved"].toDouble();
+      list[1].yaxis =
+          list[1].yaxis + user['$i']["GPU Litmus Test"]["seq"].toDouble();
+      list[2].yaxis =
+          list[2].yaxis + user['$i']["GPU Litmus Test"]["weak"].toDouble();
+    }
+  }
 }
 
 class myBarGraph extends StatefulWidget {

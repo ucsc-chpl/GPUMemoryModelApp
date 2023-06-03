@@ -248,6 +248,9 @@ gpuiosbundle_SOURCE_DIR:STATIC=/Users/atom/gpuiosbundle/android/app/src/main/cpp
 //Dependencies for the target
 native_litmus_LIB_DEPENDS:STATIC=general;vulkan;
 
+//Dependencies for the target
+native_lock_LIB_DEPENDS:STATIC=general;vulkan;
+
 
 ########################
 # INTERNAL cache entries

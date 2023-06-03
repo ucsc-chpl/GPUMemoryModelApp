@@ -1,0 +1,12 @@
+com.rmawatson.flutterisolate.flutter_isolate-jetified-window-1.0.0-beta04-0 /Users/atom/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/res
+com.rmawatson.flutterisolate.flutter_isolate-jetified-annotation-experimental-1.1.0-1 /Users/atom/.gradle/caches/transforms-3/6c0c163cc77ae6c91f9f7dfcd179c29c/transformed/jetified-annotation-experimental-1.1.0/res
+com.rmawatson.flutterisolate.flutter_isolate-core-1.6.0-2 /Users/atom/.gradle/caches/transforms-3/7e9df2ac2213a6bd3cef0f2f27870d79/transformed/core-1.6.0/res
+com.rmawatson.flutterisolate.flutter_isolate-jetified-window-java-1.0.0-beta04-3 /Users/atom/.gradle/caches/transforms-3/ae81e06d24c799147c26814497a2a305/transformed/jetified-window-java-1.0.0-beta04/res
+com.rmawatson.flutterisolate.flutter_isolate-main-4 /Users/atom/.pub-cache/hosted/pub.dev/flutter_isolate-2.0.4/android/src/main/res
+com.rmawatson.flutterisolate.flutter_isolate-release-5 /Users/atom/.pub-cache/hosted/pub.dev/flutter_isolate-2.0.4/android/src/release/res
+com.rmawatson.flutterisolate.flutter_isolate-pngs-6 /Users/atom/gpuiosbundle/build/flutter_isolate/generated/res/pngs/release
+com.rmawatson.flutterisolate.flutter_isolate-resValues-7 /Users/atom/gpuiosbundle/build/flutter_isolate/generated/res/resValues/release
+com.rmawatson.flutterisolate.flutter_isolate-rs-8 /Users/atom/gpuiosbundle/build/flutter_isolate/generated/res/rs/release
+com.rmawatson.flutterisolate.flutter_isolate-mergeReleaseResources-9 /Users/atom/gpuiosbundle/build/flutter_isolate/intermediates/incremental/release/mergeReleaseResources/merged.dir
+com.rmawatson.flutterisolate.flutter_isolate-mergeReleaseResources-10 /Users/atom/gpuiosbundle/build/flutter_isolate/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+com.rmawatson.flutterisolate.flutter_isolate-merged_res-11 /Users/atom/gpuiosbundle/build/flutter_isolate/intermediates/merged_res/release

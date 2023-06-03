@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 //import 'package:gpuiosbundle/forms.dart';
@@ -114,9 +115,31 @@ class _MessagePageState extends State<MessagePage> {
     }
   }
 
-  void _tuningClick() {
-    print("reached here");
-    FFIBridge.tuning(
+  void _tuningClick() async {
+    // currTestIterations = int.parse(_tIter.text);
+    // tuningTestWorkgroups = int.parse(_tWorkgroup.text);
+    // tuningMaxWorkgroups = int.parse(_tMaxworkgroup.text);
+    // tuningWorkgroupSize = int.parse(_tSize.text);
+    // numConfig = int.parse(_tConfigNum.text);
+    // var seed = _tRandomSeed.text;
+
+    // var fileMap = {};
+
+    // var tmpRandom = Random();
+
+    // if (seed.isEmpty) {
+    //   tmpRandom = Random(10);
+    // } else {
+    //   tmpRandom = Random(prngGen(seed));
+    // }
+
+    // for (int i = 0; i < numConfig; i++) {
+    //   var tuningRandom = Random(tmpRandom.nextInt(prngGen(seed)));
+
+    //   await FFIBridge.writetuningParams("Tuning Test", false);
+    // }
+    // print("reached here");
+    await FFIBridge.tuning(
         "Tuning Test",
         shader_spv,
         result_spv,
@@ -128,9 +151,13 @@ class _MessagePageState extends State<MessagePage> {
         _tSize.text);
 
     setState(() {
-      _visibleIndicator = true;
+      _visibleIndicator = false;
       _visibleBarChart = true;
     });
+
+    //myBarGraph();
+
+    await initList(_tConfigNum.text);
   }
 
   void _changeStress() {
@@ -204,7 +231,11 @@ class _MessagePageState extends State<MessagePage> {
           _visibleBarChart = true;
         }
       });
-    });
+    }
+
+        //
+
+        );
 
     // print("I am here");
 
@@ -218,6 +249,8 @@ class _MessagePageState extends State<MessagePage> {
     });
 
     // print("when done");
+
+    await initList();
   }
 
   void writeDefault() async {
@@ -787,8 +820,8 @@ class _MessagePageState extends State<MessagePage> {
                           padding: const EdgeInsets.all(8.0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _compute();
                               Navigator.of(context).pop();
+                              _compute();
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Colors.green,
@@ -984,8 +1017,8 @@ class _MessagePageState extends State<MessagePage> {
                             padding: const EdgeInsets.all(8.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                _tuningClick();
                                 Navigator.of(context).pop();
+                                _tuningClick();
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.green,
@@ -1037,244 +1070,275 @@ class _MessagePageState extends State<MessagePage> {
             //   mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(
-                page,
-                // textAlign: TextAlign.center,
-                //overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 15),
-              const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  //  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Initial State:',
-                      //  textAlign: TextAlign.left,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: Text(
-                        init_state,
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                            backgroundColor:
-                                Color.fromARGB(255, 203, 198, 198)),
-                        // textAlign: TextAlign.center,
-                        //  overflow: TextOverflow.ellipsis,
-                      ),
-                    )
-                  ]),
-              const SizedBox(height: 10),
-              const Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                Text(
-                  'Final State:',
-                  textAlign: TextAlign.center,
-                  // overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: Text(
-                    final_state,
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        backgroundColor: Color.fromARGB(255, 203, 198, 198)),
-                    textAlign: TextAlign.center,
-                    //   overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ]),
-              const SizedBox(height: 15),
-              Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Text(
-                      'Workgroup 0 Thread 0:',
-                      //  textAlign: TextAlign.center,
-                      //  overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 5),
-                    Container(
-                      color: Colors.grey,
-                      child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+              Expanded(
+                  child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          // crossAxisAlignment: CrossAxisAlignment.start,
+                          // mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Text(
-                                workgroup0_thread0_text1,
-                                //  textAlign: TextAlign.center,
-                                //  overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
+                            const Text(
+                              page,
+                              // textAlign: TextAlign.center,
+                              //overflow: TextOverflow.ellipsis,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 15),
+                            const Row(
+                                mainAxisSize: MainAxisSize.min,
+                                //  crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    'Initial State:',
+                                    //  textAlign: TextAlign.left,
+                                    overflow: TextOverflow.ellipsis,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Text(
+                                      init_state,
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold,
+                                          backgroundColor: Color.fromARGB(
+                                              255, 203, 198, 198)),
+                                      // textAlign: TextAlign.center,
+                                      //  overflow: TextOverflow.ellipsis,
+                                    ),
+                                  )
+                                ]),
+                            const SizedBox(height: 10),
+                            const Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Text(
+                                    'Final State:',
+                                    textAlign: TextAlign.center,
+                                    // overflow: TextOverflow.ellipsis,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Text(
+                                      final_state,
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold,
+                                          backgroundColor: Color.fromARGB(
+                                              255, 203, 198, 198)),
+                                      textAlign: TextAlign.center,
+                                      //   overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ]),
+                            const SizedBox(height: 15),
+                            Column(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  const Text(
+                                    'Workgroup 0 Thread 0:',
+                                    //  textAlign: TextAlign.center,
+                                    //  overflow: TextOverflow.ellipsis,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Container(
+                                    color: Colors.grey,
+                                    child: const Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Text(
+                                              workgroup0_thread0_text1,
+                                              //  textAlign: TextAlign.center,
+                                              //  overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Text(
+                                              workgroup0_thread0_text2,
+                                              // textAlign: TextAlign.center,
+                                              //   overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ]),
+                                  ),
+                                ]),
+                            const SizedBox(height: 15),
+                            Column(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  const Text(
+                                    'Workgroup 1 Thread 0',
+                                    //  textAlign: TextAlign.center,
+                                    //   overflow: TextOverflow.ellipsis,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Container(
+                                    color: Colors.grey,
+                                    child: const Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Text(
+                                              workgroup1_thread0_text1,
+                                              // textAlign: TextAlign.center,
+                                              //  overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Text(
+                                              workgroup1_thread0_text2,
+                                              // textAlign: TextAlign.center,
+                                              //   overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ]),
+                                  ),
+                                ]),
+                            const SizedBox(height: 15),
+                            Wrap(
+                              // mainAxisSize: MainAxisSize.min,
+
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 160, // <-- Your width
+                                  height: 50, // <-- Your height
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: ElevatedButton(
+                                      style: const ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStatePropertyAll<Color>(
+                                                Colors.green),
+                                      ),
+                                      onPressed: _isExplorerButtonDisabled
+                                          ? () => showExplorerDialog()
+                                          : null,
+                                      child: const Text('Default Explorer'),
+                                    ),
+                                  ),
+                                ),
+                                // const SizedBox(height: 30),
+
+                                SizedBox(
+                                  width: 160, // <-- Your width
+                                  height: 50, // <-- Your height
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: ElevatedButton(
+                                      style: const ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStatePropertyAll<Color>(
+                                                Colors.green),
+                                      ),
+                                      onPressed: _isStressButtonDisabled
+                                          ? () => showTuningDialog()
+                                          : null,
+                                      child: const Text('Tuning'),
+                                    ),
+                                  ),
+                                ),
+                                //  const SizedBox(height: 30),
+
+                                SizedBox(
+                                  width: 160, // <-- Your width
+                                  height: 50, // <-- Your height
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: ElevatedButton(
+                                      style: const ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStatePropertyAll<Color>(
+                                                Colors.red),
+                                      ),
+                                      onPressed: _isResultButtonDisabled
+                                          ? _results
+                                          : null,
+                                      child: Text('Result'),
+                                    ),
+                                  ),
+                                ),
+
+                                SizedBox(
+                                  width: 160, // <-- Your width
+                                  height: 50, // <-- Your height
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: ElevatedButton(
+                                      style: const ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStatePropertyAll<Color>(
+                                                Colors.blue),
+                                      ),
+                                      onPressed:
+                                          _isEmailButtonDisabled ? email : null,
+                                      child: const Text('Email'),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Text(
-                                workgroup0_thread0_text2,
-                                // textAlign: TextAlign.center,
-                                //   overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                              padding: const EdgeInsets.all(10.0),
+                              child: Visibility(
+                                child: Column(
+                                  children: [
+                                    LinearPercentIndicator(
+                                      lineHeight: 10,
+                                      percent: _percentageValue,
+                                      progressColor: Colors.deepPurple,
+                                      backgroundColor:
+                                          Colors.deepPurple.shade100,
+                                    ),
+                                    Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(_iterationMssg))
+                                  ],
+                                ),
+                                visible: _visibleIndicator,
                               ),
                             ),
-                          ]),
-                    ),
-                  ]),
-              const SizedBox(height: 15),
-              Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Text(
-                      'Workgroup 1 Thread 0',
-                      //  textAlign: TextAlign.center,
-                      //   overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 5),
-                    Container(
-                      color: Colors.grey,
-                      child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+
+                            // Padding(
+                            //     padding: const EdgeInsets.all(10.0),
+                            //     child: Visibility(child: Text(_iterationMssg))),
+
+                            // here lies the bar graph code
+
                             Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Text(
-                                workgroup1_thread0_text1,
-                                // textAlign: TextAlign.center,
-                                //  overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                              padding: const EdgeInsets.all(20.0),
+                              child: Visibility(
+                                child:
+                                    SizedBox(height: 200, child: myBarGraph()),
+                                visible: _visibleBarChart,
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Text(
-                                workgroup1_thread0_text2,
-                                // textAlign: TextAlign.center,
-                                //   overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ]),
-                    ),
-                  ]),
-              const SizedBox(height: 15),
-              Wrap(
-                // mainAxisSize: MainAxisSize.min,
-
-                children: <Widget>[
-                  SizedBox(
-                    width: 160, // <-- Your width
-                    height: 50, // <-- Your height
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll<Color>(Colors.green),
-                        ),
-                        onPressed: _isExplorerButtonDisabled
-                            ? () => showExplorerDialog()
-                            : null,
-                        child: const Text('Default Explorer'),
-                      ),
-                    ),
-                  ),
-                  // const SizedBox(height: 30),
-
-                  SizedBox(
-                    width: 160, // <-- Your width
-                    height: 50, // <-- Your height
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll<Color>(Colors.green),
-                        ),
-                        onPressed: _isStressButtonDisabled
-                            ? () => showTuningDialog()
-                            : null,
-                        child: const Text('Tuning'),
-                      ),
-                    ),
-                  ),
-                  //  const SizedBox(height: 30),
-
-                  SizedBox(
-                    width: 160, // <-- Your width
-                    height: 50, // <-- Your height
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll<Color>(Colors.red),
-                        ),
-                        onPressed: _isResultButtonDisabled ? _results : null,
-                        child: Text('Result'),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    width: 160, // <-- Your width
-                    height: 50, // <-- Your height
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll<Color>(Colors.blue),
-                        ),
-                        onPressed: _isEmailButtonDisabled ? email : null,
-                        child: const Text('Email'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Visibility(
-                  child: Column(
-                    children: [
-                      LinearPercentIndicator(
-                        lineHeight: 10,
-                        percent: _percentageValue,
-                        progressColor: Colors.deepPurple,
-                        backgroundColor: Colors.deepPurple.shade100,
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(_iterationMssg))
-                    ],
-                  ),
-                  visible: _visibleIndicator,
-                ),
-              ),
-
-              // Padding(
-              //     padding: const EdgeInsets.all(10.0),
-              //     child: Visibility(child: Text(_iterationMssg))),
-
-              // here lies the bar graph code
-
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Visibility(
-                  child: SizedBox(height: 200, child: myBarGraph()),
-                  visible: _visibleBarChart,
-                ),
-              )
+                            )
+                          ])))
             ]),
       ),
     );

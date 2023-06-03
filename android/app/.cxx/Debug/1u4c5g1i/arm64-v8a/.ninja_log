@@ -15,3 +15,10 @@
 8948	9546	1681692585	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
 1	1407	1681923782	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
 2	1315	1681928761	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
+2	1742	1685682478	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169
+20	1219	1685689205	CMakeFiles/native_lock.dir/dart_api_dl.c.o	dfc1caf97427a1c6
+18	7779	1685689212	CMakeFiles/native_lock.dir/easyvk.cpp.o	d736c43ebf95278a
+17	11585	1685689216	CMakeFiles/native_lock.dir/lock.cpp.o	e187c734c79d8f5e
+11585	12135	1685689216	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_lock.so	1314f4631a59eb19
+23	13430	1685689217	CMakeFiles/native_litmus.dir/litmus.cpp.o	fdf21aff4e3987ff
+13430	13736	1685689218	/Users/atom/gpuiosbundle/build/app/intermediates/cxx/Debug/1u4c5g1i/obj/arm64-v8a/libnative_litmus.so	5ce1cb01c39a7169

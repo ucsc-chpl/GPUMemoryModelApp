@@ -21,9 +21,14 @@
 //#include <android/log.h>
 #include "easyvk.hpp"
 
+#include "json.hpp"
+
 #include "dart_api_dl.h"
 #include "dart_native_api.h"
-#include "dart_api_dl.h"
+//#include "dart_api_dl.h"
+
+using namespace std;
+using namespace nlohmann;
 
 
 //Receives NativePort ID from Flutter code
@@ -31,6 +36,10 @@ static Dart_Port dart_port = 0;
 
 int iter = 0;
 //int total_iter = 0;
+
+json j;
+
+string jsonString;
 
 DART_EXPORT intptr_t initDartApiDL(void* data) {
    return Dart_InitializeApiDL(data);
@@ -102,8 +111,8 @@ Device getDevice(Instance &instance, map<string, int> params, ofstream &outputFi
     }
     Device device = instance.devices().at(idx);
     if(!tuningMode) {
-        outputFile << "Using device " << device.properties().deviceName << "\n";
-        outputFile << "\n";
+       // outputFile << "Device: " << device.properties().deviceName << "\n";
+      //  outputFile << "\n";
     }
     return device;
 }
@@ -243,9 +252,12 @@ int setBetween(int min, int max) {
 /** A test consists of N iterations of a shader and its corresponding result shader. */
 
 
-void run(string &shader_file, string &result_shader_file, map<string, int> params, ofstream &outputFile)
+void run(string &test, string &shader_file, string &result_shader_file, map<string, int> params, ofstream &outputFile)
 {
     // initialize settings
+
+    //error validation - is this an issue? -> IOS 
+
     auto instance = Instance(false);
     auto device = getDevice(instance, params, outputFile);
     int testingThreads = params["workgroupSize"] * params["testingWorkgroups"];
@@ -347,10 +359,13 @@ void run(string &shader_file, string &result_shader_file, map<string, int> param
         resultProgram.teardown();
     }
 
-    outputFile << "Total Result:\n";
-    outputFile << "seq: " << numSeq << "\n";
-    outputFile << "interleaved: " << numInter << "\n";
-    outputFile << "weak: " << numWeak << "\n";
+//    outputFile << "Total Result:\n";
+//    outputFile << "seq  =  " << numSeq << "\n";
+//    outputFile << "interleaved = " << numInter << "\n";
+//    outputFile << "weak = " << numWeak << "\n";
+    j[test] = { {"seq", numSeq}, {"interleaved", numInter}, {"weak", numWeak}};
+    j["device"] = gpuStr;
+    j["vendor"] = gpuVendorStr;
     
 //    cout << "Total Result:\n";
 //    cout << "seq: " << numSeq << "\n";
@@ -360,7 +375,9 @@ void run(string &shader_file, string &result_shader_file, map<string, int> param
 
     end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = end - start;
-    outputFile << "Total elapsed time: " << std::fixed << std::setprecision(3) << elapsed_seconds.count() << "s\n";
+//    outputFile << "Total elapsed time: " << std::fixed << std::setprecision(3) << elapsed_seconds.count() << "s\n";
+    
+    j["Time Elapsed"] = elapsed_seconds.count();
     
     cout << "Total elapsed time: " << std::fixed << std::setprecision(3) << elapsed_seconds.count() << "s\n";
 
@@ -462,6 +479,8 @@ extern "C" /* <= C++ only */ __attribute__((visibility("default"))) __attribute_
 int runTest(char* test, char* shader, char* result, char* config, char* path)
 {
     
+    // let's create a json here for our output file
+    
     string testName = test;
     string shaderFile = shader;
     string resultShaderFile = result;
@@ -495,10 +514,17 @@ int runTest(char* test, char* shader, char* result, char* config, char* path)
 //    char wd[256];
 //    std::cout << getcwd(wd, sizeof(wd)) << std::endl;
 
-    outputFile << "Test Name: " << testName << "\n";
-    outputFile << "Shader Name: " << shaderFile << "\n";
-    outputFile << "Result Name: " << resultShaderFile << "\n";
-    outputFile << "\n";
+//    outputFile << "Test Name: " << testName << "\n";
+//    outputFile << "Shader Name: " << shaderFile << "\n";
+//    outputFile << "Result Shader Name: " << resultShaderFile << "\n";
+//    outputFile << "\n";
+    
+//    jsonString = "{";
+//    jsonString += "\"" + testName + "\":";
+    
+//    outputFile << "Shader Name: " << shaderFile << "\n";
+//    outputFile << "Result Shader Name: " << resultShaderFile << "\n";
+//    outputFile << "\n";
 
  //   std::string configFileFullPath =  filePath + configFile;
     
@@ -513,21 +539,37 @@ int runTest(char* test, char* shader, char* result, char* config, char* path)
     srand(time(NULL));
     map<string, int> params = read_config(configFileFullPath);
 
-    outputFile << "Parameter:\n";
+//    outputFile << "Parameter:\n";
 
-    for (const auto& [key, value] : params) {
-        outputFile << key << " = " << value << ";\n";
-    }
-    outputFile << "\n";
+    
+  //  outputFile << "\n";
 
     try{
-        run(shaderFile, resultShaderFile, params, outputFile);
+        run(testName, shaderFile, resultShaderFile, params, outputFile);
     }
     catch (const std::runtime_error& e) {
         outputFile << e.what() << "\n";
         outputFile.close();
         return 1;
     }
+    
+//    jsonString+= "\"params\": {" ;
+//
+//    for (const auto& [key, value] : params) {
+//        //outputFile << key << " = " << value << ";\n";
+//        jsonString+= "\"" + key + "\": " + value + "\,";
+//    }
+    
+    j["params"] = params;
+    
+//    jsonString += "}";
+//    jsonString += "}";
+    
+   // j = json::parse(jsonString);
+    
+    cout<< j.dump(4);
+    outputFile <<std::setw(4) << j;
+    
     outputFile.close();
 
     cout<<

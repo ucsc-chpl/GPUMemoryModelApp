@@ -1,12 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gpuiosbundle/store.dart';
 import 'package:gpuiosbundle/message.dart';
 import 'package:gpuiosbundle/read.dart';
 import 'package:gpuiosbundle/lock.dart';
 import 'package:gpuiosbundle/tuning.dart';
+import 'package:path_provider/path_provider.dart';
 //import 'package:gpuiosbundle/utilities.dart';
 
 //import 'package:platform/platform.dart';
+
+void delete() async {
+  Directory dir = await getTemporaryDirectory();
+  dir.deleteSync(recursive: true);
+  dir.create();
+}
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +32,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // delete();
+
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appTitle,
