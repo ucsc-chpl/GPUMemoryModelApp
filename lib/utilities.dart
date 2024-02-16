@@ -401,6 +401,7 @@ class FFIBridge {
         ? DynamicLibrary.open('libnative_litmus.so')
         : DynamicLibrary.process();
 
+    //grab run test from c++
     final int Function(Pointer<Utf8> a, Pointer<Utf8> b, Pointer<Utf8> c,
             Pointer<Utf8> d, Pointer<Utf8> e) run =
         nativeApiLib
@@ -415,6 +416,8 @@ class FFIBridge {
     //int litmus_test =
 
     print("starting native call");
+
+    //run the "runTest" function
     run(test.toNativeUtf8(), arg[0].toNativeUtf8(), arg[1].toNativeUtf8(),
         arg[2].toNativeUtf8(), arg[3].toNativeUtf8());
   }
@@ -426,7 +429,7 @@ class FFIBridge {
     cache = tempDir.path;
 
     outputFile = "$cache/output.txt";
-
+    print(outputFile);
     var shaderComp = await getPathCacheAssets(spv);
     var shaderRes = await getPathCacheAssets(res);
     // var para = await getPathCacheAssets(param);

@@ -1812,7 +1812,10 @@ class _TuningPageState extends State<TuningPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_title)),
+      appBar: AppBar(
+        title: Text(_title),
+        backgroundColor: Color.fromARGB(255, 55, 62, 80),
+      ),
       body: SingleChildScrollView(
         child: Container(
           //  height: 800,

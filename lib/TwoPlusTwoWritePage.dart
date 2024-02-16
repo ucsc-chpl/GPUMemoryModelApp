@@ -13,20 +13,22 @@ import 'package:gpuiosbundle/bar_graph.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 
-const String shader_spv = "assets/litmustest_store_buffer_default.spv";
-const String result_spv = "assets/litmustest_store_buffer_results.spv";
+
+
+const String shader_spv = "assets/litmustest_write_22_default.spv";
+const String result_spv = "assets/litmustest_write_22_results.spv";
 const String param_basic = "assets/parameters_basic.txt";
 const String param_stress = "assets/parameters_stress.txt";
 
-class StoreBufferPage extends StatefulWidget {
-  const StoreBufferPage({Key? key}) : super(key: key);
+class TwoPlusTwoWritePage extends StatefulWidget {
+  const TwoPlusTwoWritePage({Key? key}) : super(key: key);
 
   @override
-  State<StoreBufferPage> createState() => _StoreBufferPageState();
+  State<TwoPlusTwoWritePage> createState() => _TwoPlusTwoWritePageState();
 }
 
-class _StoreBufferPageState extends State<StoreBufferPage> {
-    final String _title = 'GPU Store Buffer Test';
+class _TwoPlusTwoWritePageState extends State<TwoPlusTwoWritePage> {
+    final String _title = 'GPU 2+2 Write Test';
     final _formKey = GlobalKey<FormState>();
     TextEditingController userInput = TextEditingController();
     late String _iterationMssg;
@@ -100,9 +102,6 @@ class _StoreBufferPageState extends State<StoreBufferPage> {
             super.setState(fn);
         }
     }
-    void _email() {
-
-    }
 
     void writeDefault() async {
         Map<String, dynamic> tuningParam = new Map();
@@ -161,7 +160,31 @@ class _StoreBufferPageState extends State<StoreBufferPage> {
 
         call_bridge(param_tmp, shader_spv, result_spv);
     }
-    
+
+    void _tuningClick() async{
+        await FFIBridge.tuning(
+            "Tuning Test",
+            shader_spv,
+            result_spv,
+            _tConfigNum.text,
+            _tIter.text,
+            _tRandomSeed.text,
+            _tWorkgroup.text,
+            _tMaxworkgroup.text,
+            _tSize.text);
+
+        setState(() {
+        _visibleIndicator = false;
+        _visibleBarChart = true;
+        });
+
+        await initList(_tConfigNum.text);
+    }
+
+    void _email() {
+
+    }
+
     void _compute() async{
         setState(() {
             _counter = 0;
@@ -191,7 +214,6 @@ class _StoreBufferPageState extends State<StoreBufferPage> {
             });
         });
 
-
         writeDefault();
 
         setState(() {
@@ -205,8 +227,6 @@ class _StoreBufferPageState extends State<StoreBufferPage> {
         await initList();
     }
 
-
-    
     void _results(){
         String outputPath = FFIBridge.getFile();
 
@@ -220,7 +240,7 @@ class _StoreBufferPageState extends State<StoreBufferPage> {
         showDialog<String>(
             context: context,
             builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Store Buffer Test Results'),
+                    title: const Text('2+2 Write Test Results'),
                     content: SingleChildScrollView(
                     // won't be scrollable
                     child: Text(output),
@@ -228,6 +248,7 @@ class _StoreBufferPageState extends State<StoreBufferPage> {
                 ));
         });
     }
+
     void _changeDefault(){
         _iter.text = '100';
         _workgroup.text = '512';
@@ -272,26 +293,6 @@ class _StoreBufferPageState extends State<StoreBufferPage> {
         _stressAssignmentStrategy.text = '100';
     } 
 
-    void _tuningClick() async{
-        await FFIBridge.tuning(
-            "Tuning Test",
-            shader_spv,
-            result_spv,
-            _tConfigNum.text,
-            _tIter.text,
-            _tRandomSeed.text,
-            _tWorkgroup.text,
-            _tMaxworkgroup.text,
-            _tSize.text);
-
-        setState(() {
-        _visibleIndicator = false;
-        _visibleBarChart = true;
-        });
-
-        await initList(_tConfigNum.text);
-    }
-
     showExplorerDialog() {
         showDialog(
             context: context,
@@ -317,7 +318,7 @@ class _StoreBufferPageState extends State<StoreBufferPage> {
                 changeStress: _changeStress,
                 changeDefault: _changeDefault,
                 compute: _compute,
-                title_: "Store Buffer",
+                title_: "2+2 Write",
                 preStressPct: _preStressPct,
             ),
         );
@@ -338,31 +339,31 @@ class _StoreBufferPageState extends State<StoreBufferPage> {
         );
     }
 
-
-
     @override
     Widget build(BuildContext context) {
-        final String page = "The store buffer litmus test checks to see if stores can be buffered and re-ordered on different threads. A release/acquire barrier is not enough to disallow this behavior.";
+        final String title = 'GPU 2+2 Write Test';
+        final String page = 
+            "The 2+2 write litmus test checks to see if two stores in two threads can both be re-ordered.";
         final String init_state = "*x = 0, *y = 0";
-        final String final_state = "r0 == 0 && r1 == 0";
+        final String final_state = "*x == 2 && *y == 2";
         final String workgroup0_thread0_text1 =
-            "0.1: atomicStore(x, 1)";
+            "0.1: atomicStore(x, 2)";
         final String workgroup0_thread0_text2 =
-            "0.2: let r0 = atomicLoad(y)";
+            "0.2: atomicStore(y, 1)";
         final String workgroup1_thread0_text1 =
-            "1.1: atomicStore(y, 1)";
+            "1.1: atomicStore(y, 2)";
         final String workgroup1_thread0_text2 =
-            "1.2: let r1 = atomicLoad(x)";
+            "1.2: atomicStore(x, 1)";
         return Scaffold(
             appBar: AppBar(
-                title: Text(_title),
-                bottom: PreferredSize(
-                    preferredSize: Size.fromHeight(4.0),
-                    child: Container(color: Color(0xFF1F3DD2), height: 1.0),
-                ),
-              ),
+                    title: Text(_title),
+                    bottom: PreferredSize(
+                        preferredSize: Size.fromHeight(4.0),
+                        child: Container(color: Color(0xFF1F3DD2), height: 1.0),
+                    ),
+                  ),
             body: TestPageTemplateWidget(
-                title: _title,
+                title: title,
                 page: page,
                 init_state: init_state,
                 final_state: final_state,

@@ -101,7 +101,10 @@ class _LockState extends State<Lock> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_title)),
+      appBar: AppBar(
+        title: Text(_title),
+        backgroundColor: Color.fromARGB(255, 55, 62, 80),
+      ),
       body: Container(
         //child: Center(
 

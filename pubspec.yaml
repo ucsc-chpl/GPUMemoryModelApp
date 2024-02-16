@@ -154,6 +154,9 @@ flutter:
      - assets/parameters.txt
      - assets/parameters_stress.txt
      - assets/image.png
+     - assets/load-buffer.spv
+     - assets/load-buffer-results.spv
+     - assets/logo.png
     
     
 
