@@ -13,8 +13,8 @@ import 'tuningDialogTemplate.dart';
 import 'package:gpuiosbundle/bar_graph.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-String shader_spv = "assets/litmustest_read_default.spv";
-String result_spv = "assets/litmustest_read_results.spv";
+String shader_spv = "assets/read.spv";
+String result_spv = "assets/read-results.spv";
 String param_basic = "assets/parameters_basic.txt";
 String param_stress = "assets/parameters_stress.txt";
 
@@ -249,6 +249,9 @@ class _ReadPageState extends State<ReadPage> {
     tuningParam["preStressStoreSecondPct"] = _preStressStoreSecondPct.text;
     tuningParam["numMemLocations"] = 2;
     tuningParam["numOutputs"] = 2;
+    tuningParam["permuteFirst"] = 419;
+    tuningParam["permuteSecond"] = 1031;
+    tuningParam["aliasedMemory"] = 0;
 
     Directory tempDir = await getTemporaryDirectory();
 

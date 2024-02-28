@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-//import 'package:gpuiosbundle/forms.dart';
 import 'package:gpuiosbundle/utilities.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -15,8 +14,8 @@ import 'tuningDialogTemplate.dart';
 
 
 
-String shader_spv = "assets/litmustest_message_passing_default.spv";
-String result_spv = "assets/litmustest_message_passing_results.spv";
+String shader_spv = "assets/message-passing.spv";
+String result_spv = "assets/message-passing-results.spv";
 String param_basic = "assets/parameters_basic.txt";
 String param_stress = "assets/parameters_stress.txt";
 const String title = "GPU Message Passing Test";
@@ -253,6 +252,9 @@ class _MessagePageState extends State<MessagePage> {
     tuningParam["preStressStoreSecondPct"] = _preStressStoreSecondPct.text;
     tuningParam["numMemLocations"] = 2;
     tuningParam["numOutputs"] = 2;
+    tuningParam["permuteFirst"] = 419;
+    tuningParam["permuteSecond"] = 1031;
+    tuningParam["aliasedMemory"] = 0;
 
     Directory tempDir = await getTemporaryDirectory();
 

@@ -127,6 +127,9 @@ class _TwoPlusTwoWritePageState extends State<TwoPlusTwoWritePage> {
         tuningParam["preStressStoreSecondPct"] = _preStressStoreSecondPct.text;
         tuningParam["numMemLocations"] = 2;
         tuningParam["numOutputs"] = 2;
+        tuningParam["permuteFirst"] = 419;
+        tuningParam["permuteSecond"] = 1031;
+        tuningParam["aliasedMemory"] = 0;
 
         Directory tempDir = await getTemporaryDirectory();
 

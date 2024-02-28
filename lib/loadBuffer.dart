@@ -176,12 +176,11 @@ class _LoadBufferPageState extends State<LoadBufferPage> {
             _visibleBarChart = false;
 
             // _iterationMssg = "Computed $_counter from $_iter.value";
-            _visibleIndicator = true;
+            _visibleIndicator = false;
         });
 
         subscription.listen((data) {
             _counter = data;
-            print(_counter);
             setState(() {
                 var iterValue = _iter.text;
                 _iterationMssg = "Computed $_counter from $iterValue";
@@ -195,20 +194,21 @@ class _LoadBufferPageState extends State<LoadBufferPage> {
         });
 
 
-        writeDefault();
+        await writeDefault();
 
         setState(() {
         _isExplorerButtonDisabled = true;
         _isStressButtonDisabled = true;
         _isResultButtonDisabled = true;
         _isEmailButtonDisabled = true;
+        _visibleBarChart = true;
         });
 
 
         await initList();
     }
 
-    void writeDefault() async {
+    Future<void> writeDefault() async {
         Map<String, dynamic> tuningParam = new Map();
 
         tuningParam["iterations"] = _iter.text;
@@ -232,6 +232,9 @@ class _LoadBufferPageState extends State<LoadBufferPage> {
         tuningParam["preStressStoreSecondPct"] = _preStressStoreSecondPct.text;
         tuningParam["numMemLocations"] = 2;
         tuningParam["numOutputs"] = 2;
+        tuningParam["permuteFirst"] = 419;
+        tuningParam["permuteSecond"] = 1031;
+        tuningParam["aliasedMemory"] = 0;
 
         Directory tempDir = await getTemporaryDirectory();
 
@@ -263,7 +266,7 @@ class _LoadBufferPageState extends State<LoadBufferPage> {
             .transform(LineSplitter())
             .forEach((l) => print('line: $l'));
 
-        call_bridge(param_tmp, shader_spv, result_spv);
+        await call_bridge(param_tmp, shader_spv, result_spv);
     }
 
     void _results([outputType]) {
