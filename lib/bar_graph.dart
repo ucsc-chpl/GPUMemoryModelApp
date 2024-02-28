@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:gpuiosbundle/utilities.dart';
 
 class Data {
@@ -10,36 +9,20 @@ class Data {
   late double yaxis;
   late Color color;
 
-  Data(int s, double x, Color c) {
-    this.xaxis = s;
-    this.yaxis = x;
-    this.color = c;
-  }
+  Data(this.xaxis, this.yaxis, this.color);
 }
 
-// default, use values from init functino
-double yaxis_length = 100;
-
-// call the function here to initialize the list data
+double yaxis_length = 100000;
 List<Data> list = [
   Data(0, 80, Colors.black),
   Data(1, 40, Colors.blue),
-  Data(2, 40, Colors.red)
+  Data(2, 40, Colors.red),
 ];
 
 Future<void> initList([var configNumber]) async {
-  // read from the output json file
-
-  // add the params to the list
-
   File file = File(outputFile);
   var jsonString = await file.readAsString();
   Map<String, dynamic> user = jsonDecode(jsonString);
-
-  //total = iterations * testingWorkgroups * workgroupSize
-  // this will be y axis
-
-  // interleaved, seq and weak
 
   if (configNumber == null) {
     yaxis_length = user["params"]["iterations"].toDouble() *
@@ -56,81 +39,63 @@ Future<void> initList([var configNumber]) async {
     list[2].yaxis = 0;
 
     for (int i = 0; i < int.parse(configNumber); i++) {
-      print("from init + $i");
-      yaxis_length = yaxis_length +
-          user['$i']["params"]["iterations"].toDouble() *
-              user['$i']["params"]["testingWorkgroups"].toDouble() *
-              user['$i']["params"]["workgroupSize"].toDouble();
-      list[0].yaxis = list[0].yaxis +
-          user['$i']["GPU Litmus Test"]["interleaved"].toDouble();
-      list[1].yaxis =
-          list[1].yaxis + user['$i']["GPU Litmus Test"]["seq"].toDouble();
-      list[2].yaxis =
-          list[2].yaxis + user['$i']["GPU Litmus Test"]["weak"].toDouble();
+      yaxis_length += user['$i']["params"]["iterations"].toDouble() *
+          user['$i']["params"]["testingWorkgroups"].toDouble() *
+          user['$i']["params"]["workgroupSize"].toDouble();
+      list[0].yaxis += user['$i']["GPU Litmus Test"]["interleaved"].toDouble();
+      list[1].yaxis += user['$i']["GPU Litmus Test"]["seq"].toDouble();
+      list[2].yaxis += user['$i']["GPU Litmus Test"]["weak"].toDouble();
     }
   }
 }
 
 class myBarGraph extends StatefulWidget {
-  myBarGraph({super.key});
+  myBarGraph({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => BarChartSample4State();
+  State<StatefulWidget> createState() => _BarChartSample4State();
 }
 
-class BarChartSample4State extends State<myBarGraph> {
+class _BarChartSample4State extends State<myBarGraph> {
+  @override
+  void initState() {
+    super.initState();
+    initList().then((_) {
+      setState(() {
+        // will rebuild graph when data is loaded
+      });
+    });
+  }
+
   Widget topTitles(double value, TitleMeta meta) {
     const style = TextStyle(fontSize: 10);
-    String text;
     switch (value.toInt()) {
       case 0:
-        text = 'Interleaved';
-        break;
+        return SideTitleWidget(axisSide: meta.axisSide, child: Text('Interleaved', style: style));
       case 1:
-        text = 'Seq';
-        break;
+        return SideTitleWidget(axisSide: meta.axisSide, child: Text('Seq', style: style));
       case 2:
-        text = 'Weak';
-        break;
+        return SideTitleWidget(axisSide: meta.axisSide, child: Text('Weak', style: style));
       default:
-        text = '';
-        break;
+        return Container();
     }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: Text(text, style: style),
-    );
   }
 
   Widget bottomTitles(double value, TitleMeta meta) {
     const style = TextStyle(fontSize: 10);
-    String text;
     switch (value.toInt()) {
       case 0:
-        text = list[0].yaxis.toString();
-        break;
+        return SideTitleWidget(axisSide: meta.axisSide, child: Text(list[0].yaxis.toString(), style: style));
       case 1:
-        text = list[1].yaxis.toString();
-        break;
+        return SideTitleWidget(axisSide: meta.axisSide, child: Text(list[1].yaxis.toString(), style: style));
       case 2:
-        text = list[2].yaxis.toString();
-        break;
+        return SideTitleWidget(axisSide: meta.axisSide, child: Text(list[2].yaxis.toString(), style: style));
       default:
-        text = '';
-        break;
+        return Container();
     }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: Text(text, style: style),
-    );
   }
-
   @override
   Widget build(BuildContext context) {
-    initList();
-    //print(yaxis_length);
     return BarChart(
       BarChartData(
         maxY: yaxis_length,
@@ -161,17 +126,21 @@ class BarChartSample4State extends State<myBarGraph> {
                 x: data.xaxis,
                 barRods: [
                   BarChartRodData(
-                      toY: data.yaxis,
-                      width: 25,
-                      color: data.color,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
+                    toY: data.yaxis,
+                    width: 25,
+                    color: data.color,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                  ),
                 ],
               ),
             )
             .toList(),
+        barTouchData: BarTouchData(
+          enabled: false,
+        ),
       ),
     );
   }
